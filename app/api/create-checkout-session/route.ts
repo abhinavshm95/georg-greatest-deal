@@ -44,7 +44,7 @@ export async function POST(req: Request) {
           subscription_data: {
             metadata
           },
-          success_url: `${getURL()}/account`,
+          success_url: `${getURL()}/signin`,
           cancel_url: `${getURL()}/`
         });
       } else if (price.type === 'one_time') {
@@ -63,7 +63,7 @@ export async function POST(req: Request) {
           ],
           mode: 'payment',
           allow_promotion_codes: true,
-          success_url: `${getURL()}/account`,
+          success_url: `${getURL()}/signin`,
           cancel_url: `${getURL()}/`
         });
       }
