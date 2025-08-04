@@ -5,13 +5,19 @@ import { useSupabase } from '@/app/supabase-provider';
 import { TreeSelect, TreeSelectSelectionKeysType } from 'primereact/treeselect';
 import { FormEvent, useEffect, useRef, useState } from 'react';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';
-import { NotificationLimitService } from '@/utils/notification-limit-service';
 import { ExclamationTriangleIcon } from '@heroicons/react/20/solid';
 import { PlusIcon } from '@heroicons/react/24/outline';
 import cn from 'classnames';
 import { useRouter } from 'next/navigation';
 import { TreeNode } from 'primereact/treenode';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import type { Database } from '@/types_db';
+
+type Subscription = Database['public']['Tables']['subscriptions']['Row'] & {
+  prices?: (Database['public']['Tables']['prices']['Row'] & {
+    products?: Database['public']['Tables']['products']['Row'] | null;
+  }) | null;
+};
 
 type Inputs = {
   firstName: string;
@@ -71,6 +77,11 @@ const FilterForm = ({
   const [noAffiliatePrograms, setNoAffiliatePrograms] = useState(false);
   const [loadingCategories, setLoadingCategories] = useState(true);
   const [addAffiliateProgram, setAddAffiliateProgram] = useState(false);
+  
+  // Subscription management state
+  const [subscription, setSubscription] = useState<Subscription | null>(null);
+  const [subLoading, setSubLoading] = useState(true);
+  const [manageSubLoading, setManageSubLoading] = useState(false);
 
   const {
     register,
@@ -260,6 +271,54 @@ const FilterForm = ({
     transformCategories();
   }, [selectedCategoriesKeys]);
 
+  // Fetch subscription data
+  useEffect(() => {
+    async function fetchSubscription() {
+      setSubLoading(true);
+      try {
+        const res = await fetch('/api/subscription');
+        if (res.ok) {
+          const data = await res.json();
+          setSubscription(data.subscription);
+          
+          // Set max notification limit based on subscription plan
+          if (data.subscription?.prices?.products?.max_notification_limit) {
+            setMaxDeals(data.subscription.prices.products.max_notification_limit);
+          }
+        } else {
+          setSubscription(null);
+        }
+      } catch (e) {
+        setSubscription(null);
+      } finally {
+        setSubLoading(false);
+      }
+    }
+    fetchSubscription();
+  }, []);
+
+  const handleManageSubscription = async () => {
+    try {
+      setManageSubLoading(true);
+      const response = await fetch('/api/create-portal-link', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      if (!response.ok) {
+        throw new Error('Failed to create portal link');
+      }
+      const { url } = await response.json();
+      window.location.href = url;
+    } catch (error) {
+      console.error('Error creating portal link:', error);
+      alert('Failed to open subscription management. Please try again.');
+    } finally {
+      setManageSubLoading(false);
+    }
+  };
+
   const transformCategories = async () => {
     const selectedCategoriesDbFromat = await NodeService.transformCategories(
       selectedCategoriesKeys,
@@ -271,11 +330,9 @@ const FilterForm = ({
     console.log('selectedCategoriesKeys', selectedCategoriesKeys);
     console.log('allCategories', allCategories);
 
-    const updatedNotificationLimit =
-      await NotificationLimitService.getNotificationLimit(
-        selectedCategoriesDbFromat
-      );
-    setMaxDeals(updatedNotificationLimit);
+    // Use subscription-based notification limit instead of NotificationLimitService
+    // The maxDeals is already set from the subscription data in the useEffect
+    // This function now only handles category transformation
   };
 
   const onSubmit: SubmitHandler<Inputs> = async (formData) => {
@@ -350,6 +407,75 @@ const FilterForm = ({
   };
 
   return (
+    <>
+    <div className="border-b border-gray-900/10 pb-12">
+          <h3 className="text-base font-semibold leading-7 text-gray-900">
+            Subscription Management
+          </h3>
+          <p className="mt-1 text-sm leading-6 text-gray-600">
+            Manage your subscription, update payment methods, and view billing history.
+          </p>
+          <div className="mt-10">
+            {subLoading ? (
+              <div className="text-gray-500">Loading subscription info...</div>
+            ) : subscription ? (
+              <div className="mb-4 space-y-2">
+                <div className="flex justify-between">
+                  <span className="text-sm text-gray-600">Status:</span>
+                  <span className="text-sm font-medium text-gray-900">{subscription.status?.toUpperCase()}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-sm text-gray-600">Plan:</span>
+                  <span className="text-sm font-medium text-gray-900">{subscription.prices?.products?.name || 'N/A'}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-sm text-gray-600">Start Date:</span>
+                  <span className="text-sm font-medium text-gray-900">
+                    {subscription.current_period_start ? new Date(subscription.current_period_start).toLocaleDateString() : 'N/A'}
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-sm text-gray-600">Max Notifications:</span>
+                  <span className="text-sm font-medium text-gray-900">
+                    {subscription.prices?.products?.max_notification_limit || 'N/A'} per day
+                  </span>
+                </div>
+              </div>
+            ) : (
+              <div className="mb-4 text-gray-500">No active subscription found.</div>
+            )}
+            <button
+              type="button"
+              onClick={handleManageSubscription}
+              disabled={manageSubLoading}
+              className={`rounded-md bg-indigo-600 px-8 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 flex items-center ${manageSubLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+            >
+              {manageSubLoading && (
+                <svg
+                  className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
+              )}
+              Manage Subscription
+            </button>
+          </div>
+        </div>
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="my-8 space-y-8 max-w-screen-md">
         <div className="border-b border-gray-900/10 pb-12">
@@ -729,6 +855,11 @@ const FilterForm = ({
               </legend>
               <p className="mt-1 text-sm leading-6 text-gray-600">
                 How many deal notifications do you want to receive per day?
+                {subscription?.prices?.products?.max_notification_limit && (
+                  <span className="block mt-1 text-xs text-indigo-600">
+                    Your {subscription.prices.products.name} plan allows up to {subscription.prices.products.max_notification_limit} notifications per day.
+                  </span>
+                )}
               </p>
               <div className="relative my-6 mb-2">
                 <span className="text-xl">
@@ -842,7 +973,6 @@ const FilterForm = ({
             </fieldset>
           </div>
         </div>
-
         <div>
           <p className="mt-1 leading-6 text-gray-600">
             By using our service you agree to the{' '}
@@ -926,6 +1056,7 @@ const FilterForm = ({
         </div>
       </div>
     </form>
+    </>
   );
 };
 

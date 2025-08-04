@@ -225,6 +225,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
     (a, b) =>
       desiredOrder.indexOf(a.name ?? '') - desiredOrder.indexOf(b.name ?? '')
   );
+  
 
   // Map API products to UI plans by order
   const plans = sortedProducts.map((product) => {
@@ -249,17 +250,11 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
     if (!selectedPrice) return { min: 1, max: 5 }; // Default to Basic limits
     
     const selectedPlan = plans.find(plan => plan.price?.id === selectedPrice.id);
-    const planName = selectedPlan?.product.name;
-    switch (planName) {
-      case 'Basic':
-        return { min: 1, max: 5 };
-      case 'Growth':
-        return { min: 1, max: 20 };
-      case 'Pro':
-        return { min: 1, max: 50 };
-      default:
-        return { min: 1, max: 5 };
-    }
+    if (!selectedPlan) return { min: 1, max: 5 };
+    
+    // Use the max_notification_limit from the database
+    const maxLimit = selectedPlan.product.max_notification_limit || 5;
+    return { min: 1, max: maxLimit };
   };
 
   const frequencyLimits = getFrequencyLimits();

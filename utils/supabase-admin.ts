@@ -44,13 +44,19 @@ const logDatabaseOperation = (operation: string, data: any, level: 'info' | 'err
 
 const upsertProductRecord = async (product: Stripe.Product): Promise<void> => {
   try {
+    // Extract max_notification_limit from the product data
+    // Since it's a custom field, we need to access it from the product object
+    const maxNotificationLimit = (product as any).max_notification_limit || 
+      (product.metadata?.max_notification_limit ? parseInt(product.metadata.max_notification_limit) : 5);
+
     const productData: Product = {
       id: product.id,
       active: product.active,
       name: product.name,
       description: product.description ?? null,
       image: product.images?.[0] ?? null,
-      metadata: product.metadata
+      metadata: product.metadata,
+      max_notification_limit: maxNotificationLimit
     };
 
     const { error } = await supabaseAdmin.from('products').upsert([productData]);

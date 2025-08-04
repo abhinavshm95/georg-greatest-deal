@@ -87,6 +87,7 @@ export interface Database {
           id: string
           image: string | null
           metadata: Json | null
+          max_notification_limit: number | null
           name: string | null
         }
         Insert: {
@@ -95,6 +96,7 @@ export interface Database {
           id: string
           image?: string | null
           metadata?: Json | null
+          max_notification_limit?: number | null
           name?: string | null
         }
         Update: {
@@ -103,6 +105,7 @@ export interface Database {
           id?: string
           image?: string | null
           metadata?: Json | null
+          max_notification_limit?: number | null
           name?: string | null
         }
         Relationships: []

@@ -3,7 +3,6 @@ import { redirect } from 'next/navigation';
 import { createClient } from '@supabase/supabase-js';
 import { cookies } from 'next/headers';
 import FilterForm from '@/components/FilterForm';
-import ManageSubscriptionButton from '@/components/ManageSubscriptionButton';
 
 // Note: supabaseAdmin uses the SERVICE_ROLE_KEY which you must only use in a secure server-side context
 // as it has admin privileges and overwrites RLS policies!
@@ -84,7 +83,6 @@ const PreferecesPage = async () => {
       <div className="max-w-screen-lg">
         <h1 className="text-4xl my-8">Settings</h1>
         <div className="my-8 space-y-8 max-w-screen-md">
-          <ManageSubscriptionButton />
           <FilterForm
             initUserDetails={{
               firstName: userDetails.first_name,
