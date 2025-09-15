@@ -37,8 +37,7 @@ export default function AuthUI() {
                 messageText: '#fca5a5',
                 anchorTextColor: '#60a5fa',
                 anchorTextHoverColor: '#93c5fd',
-                dividerBackground: '#4b5563',
-                loaderColor: '#60a5fa'
+                dividerBackground: '#4b5563'
               }
             }
           }
