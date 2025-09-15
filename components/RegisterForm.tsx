@@ -7,7 +7,7 @@ import { FormEvent, useEffect, useRef, useState } from 'react';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';
 import { NotificationLimitService } from '@/utils/notification-limit-service';
 import { ExclamationTriangleIcon } from '@heroicons/react/20/solid';
-import { PlusIcon } from '@heroicons/react/24/outline';
+import { PlusIcon, EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
 import { CheckCircleIcon } from '@heroicons/react/24/solid';
 import cn from 'classnames';
 import { useRouter } from 'next/navigation';
@@ -75,6 +75,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
     useState<number>(1);
   const [pushNotificationsChannel, setPushNotificationsChannel] =
     useState('whatsapp');
+  const [showPassword, setShowPassword] = useState(false);
 
   const onPushNotificationsFrequencyChange = (value: string) => {
     const newValue = Number(value);
@@ -392,9 +393,10 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="my-8 space-y-8 max-w-screen-md">
-        <div className="border-b border-gray-900/10 pb-12">
+    <div className="bg-white rounded-2xl shadow-lg p-8 max-w-4xl mx-auto">
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="space-y-8">
+          <div className="border-b border-gray-900/10 pb-12">
           <h3 className="text-base font-semibold leading-7 text-gray-900">
             Personal Information
           </h3>
@@ -417,7 +419,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                   name="firstName"
                   id="firstName"
                   autoComplete="given-name"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-lg border-0 py-3 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-200 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 focus:border-transparent sm:text-sm sm:leading-6 transition-colors"
                   placeholder="John"
                   required
                 />
@@ -438,7 +440,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                   name="lastName"
                   id="lastName"
                   autoComplete="family-name"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-lg border-0 py-3 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-200 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 focus:border-transparent sm:text-sm sm:leading-6 transition-colors"
                   placeholder="Doe"
                   required
                 />
@@ -459,7 +461,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                   name="email"
                   type="email"
                   autoComplete="email"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-lg border-0 py-3 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-200 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 focus:border-transparent sm:text-sm sm:leading-6 transition-colors"
                   placeholder="john@doe.com"
                   required
                 />
@@ -480,7 +482,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                   name="phone"
                   type="tel"
                   autoComplete="phone"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-lg border-0 py-3 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-200 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 focus:border-transparent sm:text-sm sm:leading-6 transition-colors"
                   placeholder="+491234567890"
                   required
                 />
@@ -498,15 +500,27 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
               >
                 Password*
               </label>
-              <div className="mt-2">
+              <div className="mt-2 relative">
                 <input
                   {...register('password', { required: true, minLength: 6 })}
                   id="password"
                   name="password"
-                  type="password"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
+                  type={showPassword ? 'text' : 'password'}
+                  className="block w-full rounded-lg border-0 py-3 px-4 pr-12 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-200 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 focus:border-transparent sm:text-sm sm:leading-6 transition-colors"
+                  placeholder="Enter your password"
                   required
                 />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                >
+                  {showPassword ? (
+                    <EyeSlashIcon className="h-5 w-5" />
+                  ) : (
+                    <EyeIcon className="h-5 w-5" />
+                  )}
+                </button>
               </div>
             </div>
           </div>
@@ -1019,9 +1033,10 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
             </a>
           </p>
           <p className="mt-6 text leading-6 text-gray-600">Have a nice day.</p>
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
   );
 };
 
