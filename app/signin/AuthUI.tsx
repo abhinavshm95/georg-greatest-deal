@@ -72,7 +72,7 @@ export default function AuthUI() {
 
   const buttonClassName = "rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 px-10 py-4 text-base font-semibold text-white shadow-lg hover:from-blue-400 hover:to-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400 transition-all duration-200 transform hover:scale-105 w-full disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none";
 
-  const linkClassName = "text-blue-400 hover:text-blue-300 transition-colors duration-200 font-medium text-sm underline underline-offset-2 focus:outline-none";
+  const linkClassName = "text-blue-400 hover:text-blue-300 transition-colors duration-200 font-medium text-sm underline underline-offset-2 focus:outline-none focus:ring-0 focus:ring-transparent focus:border-transparent outline-none";
 
   if (view === 'forgotten_password') {
     return (
