@@ -53,7 +53,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [maxDeals, setMaxDeals] = useState(100);
   const [allCategories, setAllCategories] = useState<
-    { slug: string; level: number }[]
+    { slug: string; level: number, id: string }[]
   >([]);
   const [noCategories, setNoCategories] = useState(false);
   const [noAffiliatePrograms, setNoAffiliatePrograms] = useState(false);
@@ -127,7 +127,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
       resultNodeLevel = i + 1;
     }
 
-    return { slug: resultNode.data, level: resultNodeLevel };
+    return { slug: resultNode.data, level: resultNodeLevel, id: resultNode.id };
   };
 
   const amazonAffiliateIdRef = useRef<HTMLInputElement>(null);
@@ -195,6 +195,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
 
   useEffect(() => {
     NodeService.getTreeNodes().then((data) => {
+      console.log("getTreeNodes", data);
       setCategories(data);
       setBrands(data);
     });
@@ -310,7 +311,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
     ];
 
     // remove duplicates from brandsAndCategories array
-    const allCategories: { slug: string; level: number }[] = [];
+    const allCategories: { slug: string; level: number, id: string }[] = [];
     brandsAndCategories.forEach((item) => {
       if (
         !allCategories.some(

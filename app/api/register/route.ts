@@ -17,6 +17,7 @@ const supabaseAdmin = createClient(
 interface IRawCategory {
   slug: string;
   level: number;
+  id: string
 }
 
 interface IDBCategory {
@@ -41,24 +42,10 @@ export async function POST(req: Request) {
         affiliatePrograms
       } = await req.json();
 
-      const enrichedCategories = await Promise.all(
-        JSON.parse(categories).map(async (category: IRawCategory) => {
-          const { data, error } = await supabaseAdmin
-            .from('categories')
-            .select('id')
-            .eq('slug', category.slug)
-            .single();
-
-          if (error || !data?.id) {
-            throw new Error(`Category with slug '${category.slug}' not found`);
-          }
-
-          return {
-            id: data.id,
-            level: category.level
-          };
-        })
-      );
+      const enrichedCategories = JSON.parse(categories).map((category: IRawCategory) => ({
+        id: category.id,
+        level: category.level
+      }));
         
 
       // Create auth user first
