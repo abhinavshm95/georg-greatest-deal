@@ -14,11 +14,18 @@ export default async function AppPage() {
     getActiveProductsWithPrices()
   ]);
   return (
-    <section className="container mx-auto mb-20">
-      <div className="max-w-screen-lg">
-        <h2 className="text-2xl my-8">Sign up</h2>
+    <div className="min-h-screen bg-vira-dark py-12 px-4">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-12">
+          <h1 className="text-5xl font-bold text-white mb-4">
+            Join ViraLink
+          </h1>
+          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+            Start your affiliate marketing journey with AI-driven deal discovery
+          </p>
+        </div>
         <RegisterForm products={products} />
       </div>
-    </section>
+    </div>
   );
 }

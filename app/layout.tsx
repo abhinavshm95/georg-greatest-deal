@@ -2,7 +2,13 @@ import SupabaseProvider from './supabase-provider';
 import Footer from '@/components/ui/Footer';
 import Navbar from '@/components/ui/Navbar';
 import { PropsWithChildren } from 'react';
+import { Sora } from 'next/font/google';
 import 'styles/main.css';
+
+const sora = Sora({
+  subsets: ['latin'],
+  variable: '--font-sora',
+});
 
 const meta = {
   title: 'The Greatest Deals',
@@ -33,7 +39,7 @@ export default function RootLayout({
 }: PropsWithChildren) {
   return (
     <html lang="en">
-      <body className="loading bg-white">
+      <body className={`loading bg-white ${sora.variable} font-sora`}>
         <SupabaseProvider>
           {/* <Navbar /> */}
           <main

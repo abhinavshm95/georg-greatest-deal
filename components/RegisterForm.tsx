@@ -393,22 +393,22 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-lg p-8 max-w-4xl mx-auto">
+    <div className="bg-vira-card rounded-3xl shadow-2xl border border-gray-800 p-12 max-w-5xl mx-auto">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="space-y-8">
-          <div className="border-b border-gray-900/10 pb-12">
-          <h3 className="text-base font-semibold leading-7 text-gray-900">
+        <div className="space-y-12">
+          <div className="border-b border-gray-600/30 pb-12">
+          <h3 className="text-2xl font-bold leading-8 text-white mb-2">
             Personal Information
           </h3>
-          <p className="mt-1 text-sm leading-6 text-gray-600">
-            Use a permanent address where you can receive mail.
+          <p className="text-gray-300 text-lg">
+            Enter your personal details to get started.
           </p>
 
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div className="sm:col-span-3">
               <label
                 htmlFor="firstName"
-                className="block text-sm font-medium leading-6 text-gray-900"
+                className="block text-sm font-semibold leading-6 text-gray-200 mb-3"
               >
                 First name*
               </label>
@@ -419,7 +419,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                   name="firstName"
                   id="firstName"
                   autoComplete="given-name"
-                  className="block w-full rounded-lg border-0 py-3 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-200 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 focus:border-transparent sm:text-sm sm:leading-6 transition-colors"
+                  className="block w-full rounded-lg border-0 py-4 px-5 text-gray-900 bg-gray-100 ring-1 ring-inset ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-blue-500 focus:bg-white focus:border-transparent text-base transition-all duration-200 hover:bg-gray-50"
                   placeholder="John"
                   required
                 />
@@ -429,7 +429,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
             <div className="sm:col-span-3">
               <label
                 htmlFor="lastName"
-                className="block text-sm font-medium leading-6 text-gray-900"
+                className="block text-sm font-semibold leading-6 text-gray-200 mb-3"
               >
                 Last name*
               </label>
@@ -440,7 +440,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                   name="lastName"
                   id="lastName"
                   autoComplete="family-name"
-                  className="block w-full rounded-lg border-0 py-3 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-200 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 focus:border-transparent sm:text-sm sm:leading-6 transition-colors"
+                  className="block w-full rounded-lg border-0 py-4 px-5 text-gray-900 bg-gray-100 ring-1 ring-inset ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-blue-500 focus:bg-white focus:border-transparent text-base transition-all duration-200 hover:bg-gray-50"
                   placeholder="Doe"
                   required
                 />
@@ -450,7 +450,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
             <div className="sm:col-span-3">
               <label
                 htmlFor="email"
-                className="block text-sm font-medium leading-6 text-gray-900"
+                className="block text-sm font-semibold leading-6 text-gray-200 mb-3"
               >
                 Email address*
               </label>
@@ -461,7 +461,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                   name="email"
                   type="email"
                   autoComplete="email"
-                  className="block w-full rounded-lg border-0 py-3 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-200 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 focus:border-transparent sm:text-sm sm:leading-6 transition-colors"
+                  className="block w-full rounded-lg border-0 py-4 px-5 text-gray-900 bg-gray-100 ring-1 ring-inset ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-blue-500 focus:bg-white focus:border-transparent text-base transition-all duration-200 hover:bg-gray-50"
                   placeholder="john@doe.com"
                   required
                 />
@@ -471,7 +471,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
             <div className="sm:col-span-3">
               <label
                 htmlFor="phone"
-                className="block text-sm font-medium leading-6 text-gray-900"
+                className="block text-sm font-semibold leading-6 text-gray-200 mb-3"
               >
                 Mobile Phone*
               </label>
@@ -482,7 +482,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                   name="phone"
                   type="tel"
                   autoComplete="phone"
-                  className="block w-full rounded-lg border-0 py-3 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-200 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 focus:border-transparent sm:text-sm sm:leading-6 transition-colors"
+                  className="block w-full rounded-lg border-0 py-4 px-5 text-gray-900 bg-gray-100 ring-1 ring-inset ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-blue-500 focus:bg-white focus:border-transparent text-base transition-all duration-200 hover:bg-gray-50"
                   placeholder="+491234567890"
                   required
                 />
@@ -496,7 +496,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
             <div className="sm:col-span-3">
               <label
                 htmlFor="password"
-                className="block text-sm font-medium leading-6 text-gray-900"
+                className="block text-sm font-semibold leading-6 text-gray-200 mb-3"
               >
                 Password*
               </label>
@@ -506,14 +506,14 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                   id="password"
                   name="password"
                   type={showPassword ? 'text' : 'password'}
-                  className="block w-full rounded-lg border-0 py-3 px-4 pr-12 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-200 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 focus:border-transparent sm:text-sm sm:leading-6 transition-colors"
+                  className="block w-full rounded-lg border-0 py-4 px-5 pr-12 text-gray-900 bg-gray-100 ring-1 ring-inset ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-blue-500 focus:bg-white focus:border-transparent text-base transition-all duration-200 hover:bg-gray-50"
                   placeholder="Enter your password"
                   required
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
                 >
                   {showPassword ? (
                     <EyeSlashIcon className="h-5 w-5" />
@@ -530,10 +530,10 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
           className="border-b border-gray-900/10 pb-12"
           id="affiliate-programs"
         >
-          <h3 className="text-base font-semibold leading-7 text-gray-900">
+          <h3 className="text-2xl font-bold leading-8 text-white mb-2">
             Affiliate Programs
           </h3>
-          <p className="mt-1 text-sm leading-6 text-gray-600">
+          <p className="text-gray-300 text-lg mb-8">
             To start, all you need is an account with the Amazon Associates
             Program and/ or AWIN to monetize the links we will send you.{' '}
             <br></br> We will automatically add your account-ID to the links we
@@ -570,7 +570,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                 id="affiliateProgram"
                 name="affiliateProgram"
                 autoComplete="affiliateProgram"
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                className="block w-full rounded-lg border-0 py-4 px-5 text-gray-900 bg-gray-100 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-blue-500 focus:bg-white text-base transition-all duration-200 hover:bg-gray-50"
                 onChange={onChangeAffiliateProgram}
               >
                 <option>Amazon</option>
@@ -588,7 +588,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                     type="text"
                     placeholder="Affiliate ID"
                     className={cn(
-                      'block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6',
+                      'block w-full rounded-lg border-0 py-4 px-5 text-gray-900 bg-gray-100 shadow-sm ring-1 ring-inset placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-blue-500 focus:bg-white text-base transition-all duration-200 hover:bg-gray-50',
                       noAffiliatePrograms ? 'ring-red-500' : 'ring-gray-300'
                     )}
                     onChange={(e) => {
@@ -617,7 +617,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                     type="text"
                     placeholder="Affiliate ID"
                     className={cn(
-                      'block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6',
+                      'block w-full rounded-lg border-0 py-4 px-5 text-gray-900 bg-gray-100 shadow-sm ring-1 ring-inset placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-blue-500 focus:bg-white text-base transition-all duration-200 hover:bg-gray-50',
                       noAffiliatePrograms ? 'ring-red-500' : 'ring-gray-300'
                     )}
                     onChange={(e) => {
@@ -660,14 +660,14 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
         </div>
 
         <div className="border-b border-gray-900/10 pb-12" id="categories">
-          <h3 className="text-base font-semibold leading-7 text-gray-900">
+          <h3 className="text-2xl font-bold leading-8 text-white mb-2">
             Category and Brand Preferences
           </h3>
-          <p className="mt-1 text-sm leading-6 text-gray-600">
+          <p className="text-gray-300 text-lg mb-8">
             Select the categories and brands you are interested in.
           </p>
 
-          <p className="text-sm font-semibold leading-6 text-gray-900 mt-10">
+          <p className="text-sm font-semibold leading-6 text-gray-100 mt-10">
             Categories
           </p>
           <div className="mt-2 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -688,7 +688,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
               />
             </div>
           </div>
-          <p className="text-sm font-semibold leading-6 text-gray-900 mt-10">
+          <p className="text-sm font-semibold leading-6 text-gray-100 mt-10">
             Brands
           </p>
           <div className="mt-2 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -734,23 +734,23 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
           )}
         </div>
 
-        <div className="border-b border-gray-900/10 pb-12">
-          <h3 className="text-base font-semibold leading-7 text-gray-900">
+        <div className="border-b border-gray-600/30 pb-12">
+          <h3 className="text-2xl font-bold leading-8 text-white mb-2">
             Pricing Plan
           </h3>
-          <p className="mt-1 text-sm leading-6 text-gray-600">
+          <p className="text-gray-300 text-lg mb-8">
             Choose your subscription plan to get started.
           </p>
 
-          <div className="flex justify-center mt-6 mb-10">
-            <div className="inline-flex rounded-lg bg-white p-1 border border-gray-200 shadow-sm">
+          <div className="flex justify-center mt-6 mb-12">
+            <div className="inline-flex rounded-xl bg-white p-1 shadow-lg">
               <button
                 type="button"
                 onClick={() => setBillingInterval('month')}
-                className={`px-6 py-2 rounded-md font-medium text-sm transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:z-10 ${
+                className={`px-8 py-3 rounded-lg font-semibold text-base transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-0 ${
                   billingInterval === 'month'
-                    ? 'bg-primary-600 text-white shadow'
-                    : 'text-gray-700 hover:bg-gray-100'
+                    ? 'bg-blue-600 text-white shadow-sm'
+                    : 'text-gray-600 hover:text-gray-900'
                 }`}
               >
                 Monthly billing
@@ -758,10 +758,10 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
               <button
                 type="button"
                 onClick={() => setBillingInterval('year')}
-                className={`ml-1 px-6 py-2 rounded-md font-medium text-sm transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:z-10 ${
+                className={`px-8 py-3 rounded-lg font-semibold text-base transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-0 ${
                   billingInterval === 'year'
-                    ? 'bg-primary-600 text-white shadow'
-                    : 'text-gray-700 hover:bg-gray-100'
+                    ? 'bg-blue-600 text-white shadow-sm'
+                    : 'text-gray-600 hover:text-gray-900'
                 }`}
               >
                 Yearly billing
@@ -769,73 +769,82 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-stretch mt-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 pt-4">
             {plans.map((plan, idx) => (
               <div
                 key={plan.product.id}
-                className={`relative flex-1 bg-white rounded-3xl shadow-lg flex flex-col items-center px-6 py-10 border transition-transform duration-200 cursor-pointer ${
+                className={`relative backdrop-blur-xl rounded-2xl shadow-2xl flex flex-col px-8 py-10 border transition-all duration-300 cursor-pointer transform hover:scale-105 ${
                   selectedPrice?.id === plan.price?.id
-                    ? 'border-primary-600 scale-105 z-10 shadow-2xl'
+                    ? 'bg-white/20 border-blue-400/50 ring-4 ring-blue-400/20 scale-105 z-10'
                     : plan.highlight
-                    ? 'border-primary-600 scale-105 z-10 shadow-2xl'
-                    : 'border-gray-200 hover:scale-105'
+                    ? 'bg-white/15 border-blue-400/40 ring-2 ring-blue-400/10'
+                    : 'bg-white/10 border-white/20 hover:bg-white/15'
                 }`}
                 onClick={() => plan.price && handlePriceSelection(plan.price)}
               >
                 {plan.badge && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary-600 text-white text-xs font-semibold px-4 py-1 rounded-full shadow">
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg z-10">
                     {plan.badge}
                   </div>
                 )}
-                <h2 className="text-2xl font-bold text-center mb-2">{plan.product.name}</h2>
-                <div className="text-2xl font-semibold text-center mb-6">
-                  {plan.price ?
-                    new Intl.NumberFormat('de-DE', {
-                      style: 'currency',
-                      currency: plan.price.currency?.toUpperCase() || 'EUR',
-                      minimumFractionDigits: 2
-                    }).format((plan.price.unit_amount || 0) / 100) +
-                    (billingInterval === 'month' ? ' / month' : ' / year')
-                    : 'N/A'}
+                <div className="text-center mb-8">
+                  <h3 className="text-3xl font-bold text-white mb-4">{plan.product.name}</h3>
+                  <div className="text-4xl font-bold text-white mb-2">
+                    {plan.price ?
+                      new Intl.NumberFormat('de-DE', {
+                        style: 'currency',
+                        currency: plan.price.currency?.toUpperCase() || 'EUR',
+                        minimumFractionDigits: 2
+                      }).format((plan.price.unit_amount || 0) / 100)
+                      : 'N/A'}
+                  </div>
+                  <p className="text-gray-300 text-lg">
+                    {billingInterval === 'month' ? '/ month' : '/ year'}
+                  </p>
                 </div>
-                <ul className="flex-1 w-full mb-8 space-y-3">
+
+                <ul className="flex-1 w-full mb-10 space-y-4">
                   {plan.features.map((feature: string) => (
-                    <li key={feature} className="flex items-start gap-2 text-gray-700">
-                      <CheckCircleIcon className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                      <span>{feature}</span>
+                    <li key={feature} className="flex items-start gap-3 text-gray-200">
+                      <CheckCircleIcon className="w-6 h-6 text-green-400 flex-shrink-0 mt-0.5" />
+                      <span className="text-base">{feature}</span>
                     </li>
                   ))}
                 </ul>
-                <div className={`w-full py-3 rounded-xl font-semibold text-center transition-colors duration-150 ${
-                  selectedPrice?.id === plan.price?.id
-                    ? 'bg-primary-600 text-white'
-                    : 'bg-gray-100 text-gray-700'
-                }`}>
-                  {selectedPrice?.id === plan.price?.id ? 'Selected' : 'Select Plan'}
-                </div>
+
+                <button
+                  type="button"
+                  className={`w-full py-4 rounded-xl font-bold text-lg transition-all duration-200 ${
+                    selectedPrice?.id === plan.price?.id
+                      ? 'bg-blue-600 text-white shadow-lg'
+                      : 'bg-white/20 text-white border border-white/30 backdrop-blur-sm hover:bg-white/30'
+                  }`}
+                >
+                  {selectedPrice?.id === plan.price?.id ? 'Selected Plan' : 'Select Plan'}
+                </button>
               </div>
             ))}
           </div>
-          <div className="mt-10 text-xs text-gray-500 text-center">
-            * incl. VAT<br />
-            ** The amount of deal messages depends on the selected categories / brands and could be lower.<br />
-            *** To maximize your monetization, we will DOUBLE the WA message amount for 2 days during these Deal Events (Pack1: Black Friday; Pack2: Prime Day, Black Friday)
+          <div className="mt-12 text-sm text-gray-400 text-center max-w-4xl mx-auto">
+            <p className="mb-2">* incl. VAT</p>
+            <p className="mb-2">** The amount of deal messages depends on the selected categories / brands and could be lower.</p>
+            <p>*** To maximize your monetization, we will DOUBLE the WA message amount for 2 days during these Deal Events (Pack1: Black Friday; Pack2: Prime Day, Black Friday)</p>
           </div>
         </div>
 
         <div className="border-b border-gray-900/10 pb-12">
-          <h3 className="text-base font-semibold leading-7 text-gray-900">
+          <h3 className="text-2xl font-bold leading-8 text-white mb-2">
             Notifications
           </h3>
-          <p className="mt-1 text-sm leading-6 text-gray-600">
+          <p className="text-gray-300 text-lg mb-8">
             Set your notifications preferences.
           </p>
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <fieldset className="col-span-full">
-              <legend className="text-sm font-semibold leading-6 text-gray-900">
+              <legend className="text-sm font-semibold leading-6 text-gray-100">
                 Frequency
               </legend>
-              <p className="mt-1 text-sm leading-6 text-gray-600">
+              <p className="text-gray-300 text-lg mb-8">
                 How many deal notifications do you want to receive per day?
                 {selectedPrice && (
                   <span className="block mt-1 text-xs text-primary-600">
@@ -843,51 +852,56 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                   </span>
                 )}
               </p>
-              <div className="relative my-6 mb-2">
-                <span className="text-xl">
+              <div className="relative my-8 mb-4">
+                <span className="text-2xl font-bold text-white">
                   ~ {pushNotificationsFrequency} per Day
                 </span>
               </div>
-              <div className="relative my-6 mb-20">
+              <div className="relative my-8 mb-24">
                 <label htmlFor="labels-range-input" className="sr-only">
                   Labels range
                 </label>
-                <input
-                  id="labels-range-input"
-                  type="range"
-                  min={frequencyLimits.min}
-                  max={frequencyLimits.max}
-                  value={pushNotificationsFrequency}
-                  className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer focus:ring-primary-300 focus:ring-1 accent-primary-600"
-                  onChange={(e) =>
-                    onPushNotificationsFrequencyChange(e.target.value)
-                  }
-                />
-                <span className="text-sm text-gray-500 dark:text-gray-400 absolute start-0 -bottom-6">
+                <div className="relative">
+                  <input
+                    id="labels-range-input"
+                    type="range"
+                    min={frequencyLimits.min}
+                    max={frequencyLimits.max}
+                    value={pushNotificationsFrequency}
+                    className="w-full h-3 bg-gray-600/50 rounded-full appearance-none cursor-pointer focus:outline-none focus:ring-4 focus:ring-blue-500/30 slider"
+                    onChange={(e) =>
+                      onPushNotificationsFrequencyChange(e.target.value)
+                    }
+                    style={{
+                      background: `linear-gradient(to right, #3B82F6 0%, #3B82F6 ${((pushNotificationsFrequency - frequencyLimits.min) / (frequencyLimits.max - frequencyLimits.min)) * 100}%, rgba(156, 163, 175, 0.3) ${((pushNotificationsFrequency - frequencyLimits.min) / (frequencyLimits.max - frequencyLimits.min)) * 100}%, rgba(156, 163, 175, 0.3) 100%)`
+                    }}
+                  />
+                </div>
+                <span className="text-sm text-gray-400 absolute start-0 -bottom-8">
                   ~ {frequencyLimits.min} per Day
                 </span>
-                <span className="text-sm text-gray-500 dark:text-gray-400 absolute end-0 -bottom-6">
+                <span className="text-sm text-gray-400 absolute end-0 -bottom-8">
                   ~ {frequencyLimits.max} per Day
                 </span>
               </div>
             </fieldset>
 
             <fieldset className="col-span-full">
-              <legend className="text-sm font-semibold leading-6 text-gray-900">
+              <legend className="text-sm font-semibold leading-6 text-gray-100">
                 Channel
               </legend>
-              <p className="mt-1 text-sm leading-6 text-gray-600">
+              <p className="text-gray-300 text-base mb-6">
                 These are delivered via WhatsApp to your mobile phone or via
                 email.
               </p>
-              <div className="mt-6 space-y-6">
-                <div className="flex items-center gap-x-3">
+              <div className="mt-6 space-y-5">
+                <div className="flex items-center gap-x-4">
                   <input
                     {...register('pushNotificationsChannel')}
                     id="pushWhatsapp"
                     name="push-notifications-channel"
                     type="radio"
-                    className="h-4 w-4 border-gray-300 text-primary-600 focus:ring-primary-600"
+                    className="radio-custom"
                     checked={pushNotificationsChannel === 'whatsapp'}
                     onChange={() =>
                       onPushNotificationsChannelChange('whatsapp')
@@ -895,24 +909,24 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                   />
                   <label
                     htmlFor="pushWhatsapp"
-                    className="block text-sm font-medium leading-6 text-gray-900"
+                    className="text-base font-medium text-white cursor-pointer"
                   >
                     WhatsApp
                   </label>
                 </div>
-                <div className="flex items-center gap-x-3">
+                <div className="flex items-center gap-x-4">
                   <input
                     id="pushEmail"
                     name="push-notifications-channel"
                     type="radio"
-                    className="h-4 w-4 border-gray-300 text-primary-600 focus:ring-primary-600"
+                    className="radio-custom opacity-50"
                     checked={pushNotificationsChannel === 'email'}
                     onChange={() => onPushNotificationsChannelChange('email')}
                     disabled
                   />
                   <label
                     htmlFor="pushEmail"
-                    className="block text-sm font-medium leading-6 text-gray-300"
+                    className="text-base font-medium text-gray-400 cursor-not-allowed"
                   >
                     Email
                   </label>
@@ -921,32 +935,28 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
             </fieldset>
 
             <fieldset className="col-span-full">
-              <legend className="text-sm font-semibold leading-6 text-gray-900">
+              <legend className="text-sm font-semibold leading-6 text-gray-100">
                 All Deals
               </legend>
-              <p className="mt-1 text-sm leading-6 text-gray-600">
+              <p className="text-gray-300 text-base mb-6">
                 Get notified when a new deal is posted, regardless of your
                 affiliate program preferences.
               </p>
-              <div className="mt-6 space-y-6">
-                <div className="relative flex gap-x-3">
-                  <div className="flex h-6 items-center">
-                    <input
-                      {...register('allDeals')}
-                      id="allDeals"
-                      name="all-deals"
-                      type="checkbox"
-                      className="h-4 w-4 rounded border-gray-300 text-primary-600 focus:ring-primary-600"
-                    />
-                  </div>
-                  <div className="text-sm leading-6">
-                    <label
-                      htmlFor="allDeals"
-                      className="font-medium text-gray-900"
-                    >
-                      All Deals notifications
-                    </label>
-                  </div>
+              <div className="mt-6 space-y-5">
+                <div className="flex items-center gap-x-4">
+                  <input
+                    {...register('allDeals')}
+                    id="allDeals"
+                    name="all-deals"
+                    type="checkbox"
+                    className="checkbox-custom"
+                  />
+                  <label
+                    htmlFor="allDeals"
+                    className="text-base font-medium text-gray-100 cursor-pointer"
+                  >
+                    All Deals notifications
+                  </label>
                 </div>
               </div>
             </fieldset>
@@ -954,7 +964,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
         </div>
 
         <div>
-          <p className="mt-1 leading-6 text-gray-600">
+          <p className="mt-1 leading-6 text-gray-300">
             By signing up you agree to the{' '}
             <a href="/service-agreement" className="text-primary-600">
               Closed Beta Service Agreement
@@ -993,7 +1003,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
         <div className="mt-6 flex items-center gap-x-6">
           <button
             type="submit"
-            className={`rounded-md bg-primary-600 px-8 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 flex ${!selectedPrice ? 'opacity-50 cursor-not-allowed' : ''}`}
+            className={`rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 px-10 py-4 text-base font-semibold text-white shadow-lg hover:from-blue-400 hover:to-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400 flex transition-all duration-200 transform hover:scale-105 ${!selectedPrice ? 'opacity-50 cursor-not-allowed hover:scale-100' : ''}`}
             disabled={loading || !selectedPrice}
           >
             {loading && (
@@ -1023,16 +1033,16 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
         </div>
 
         <div>
-          <p className="mt-6 text leading-6 text-gray-600">
+          <p className="mt-6 text leading-6 text-gray-300">
             Thanks so much for helping to improve our service.
           </p>
-          <p className="mt-6 text leading-6 text-gray-600">
+          <p className="mt-6 text leading-6 text-gray-300">
             Please send any feedback to:{' '}
             <a href="mailto:team@omg-ecom.com" className="text-primary-600">
               team@omg-ecom.com
             </a>
           </p>
-          <p className="mt-6 text leading-6 text-gray-600">Have a nice day.</p>
+          <p className="mt-6 text leading-6 text-gray-300">Have a nice day.</p>
           </div>
         </div>
       </form>

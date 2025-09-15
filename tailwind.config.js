@@ -12,7 +12,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-sans)', ...fontFamily.sans]
+        sans: ['var(--font-sora)', 'Sora', 'sans-serif'],
+        sora: ['var(--font-sora)', 'Sora', 'sans-serif']
       },
       colors: {
         primary: {
@@ -26,7 +27,14 @@ module.exports = {
           700: '#1A5AC9',
           800: '#1547A3',
           900: '#10367D'
-        }
+        },
+        'vira-dark': '#232325',
+        'vira-card': '#323235',
+        'gradient-purple': '#8B5CF6',
+        'gradient-pink': '#EC4899',
+        'gradient-blue': '#3B82F6',
+        'glass-white': 'rgba(255, 255, 255, 0.1)',
+        'glass-border': 'rgba(255, 255, 255, 0.2)'
       }
     },
     container: {
