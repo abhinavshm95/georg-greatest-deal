@@ -4,14 +4,15 @@ import { useState } from 'react';
 import { useSupabase } from '@/app/supabase-provider';
 import Link from 'next/link';
 
+type ViewType = 'sign_in' | 'forgotten_password';
+
 export default function AuthUI() {
   const { supabase } = useSupabase();
+  const [view, setView] = useState<ViewType>('sign_in');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
-  const [forgotPasswordLoading, setForgotPasswordLoading] = useState(false);
-  const [view, setView] = useState<'sign_in' | 'forgotten_password'>('sign_in');
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,12 +37,7 @@ export default function AuthUI() {
 
   const handleForgotPassword = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email) {
-      setMessage('Please enter your email address');
-      return;
-    }
-
-    setForgotPasswordLoading(true);
+    setLoading(true);
     setMessage('');
 
     try {
@@ -57,9 +53,26 @@ export default function AuthUI() {
     } catch (error) {
       setMessage('An unexpected error occurred');
     } finally {
-      setForgotPasswordLoading(false);
+      setLoading(false);
     }
   };
+
+  const switchToForgotPassword = () => {
+    setView('forgotten_password');
+    setPassword('');
+    setMessage('');
+  };
+
+  const switchToSignIn = () => {
+    setView('sign_in');
+    setMessage('');
+  };
+
+  const inputClassName = "block w-full rounded-lg border-0 py-4 px-5 text-gray-900 bg-gray-100 ring-1 ring-inset ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-blue-500 focus:bg-white focus:border-transparent text-base transition-all duration-200 hover:bg-gray-50";
+
+  const buttonClassName = "rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 px-10 py-4 text-base font-semibold text-white shadow-lg hover:from-blue-400 hover:to-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400 transition-all duration-200 transform hover:scale-105 w-full disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none";
+
+  const linkClassName = "text-blue-400 hover:text-blue-300 transition-colors duration-200 font-medium text-sm underline underline-offset-2";
 
   if (view === 'forgotten_password') {
     return (
@@ -75,17 +88,17 @@ export default function AuthUI() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="block w-full rounded-lg border-0 py-4 px-5 text-gray-900 bg-gray-100 ring-1 ring-inset ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-blue-500 focus:bg-white focus:border-transparent text-base transition-all duration-200 hover:bg-gray-50"
+              className={inputClassName}
               placeholder="Your email address"
             />
           </div>
 
           <button
             type="submit"
-            disabled={forgotPasswordLoading}
-            className="rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 px-10 py-4 text-base font-semibold text-white shadow-lg hover:from-blue-400 hover:to-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400 transition-all duration-200 transform hover:scale-105 w-full disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+            disabled={loading}
+            className={buttonClassName}
           >
-            {forgotPasswordLoading ? 'Sending...' : 'Send reset password instructions'}
+            {loading ? 'Sending...' : 'Send reset password instructions'}
           </button>
         </form>
 
@@ -98,8 +111,8 @@ export default function AuthUI() {
         <div className="text-center">
           <button
             type="button"
-            onClick={() => setView('sign_in')}
-            className="text-blue-400 hover:text-blue-300 transition-colors duration-200 font-medium text-sm underline underline-offset-2"
+            onClick={switchToSignIn}
+            className={linkClassName}
           >
             Already have an account? Sign in
           </button>
@@ -121,7 +134,7 @@ export default function AuthUI() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            className="block w-full rounded-lg border-0 py-4 px-5 text-gray-900 bg-gray-100 ring-1 ring-inset ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-blue-500 focus:bg-white focus:border-transparent text-base transition-all duration-200 hover:bg-gray-50"
+            className={inputClassName}
             placeholder="Enter your email"
           />
         </div>
@@ -136,7 +149,7 @@ export default function AuthUI() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            className="block w-full rounded-lg border-0 py-4 px-5 text-gray-900 bg-gray-100 ring-1 ring-inset ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-blue-500 focus:bg-white focus:border-transparent text-base transition-all duration-200 hover:bg-gray-50"
+            className={inputClassName}
             placeholder="Enter your password"
           />
         </div>
@@ -144,7 +157,7 @@ export default function AuthUI() {
         <button
           type="submit"
           disabled={loading}
-          className="rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 px-10 py-4 text-base font-semibold text-white shadow-lg hover:from-blue-400 hover:to-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400 transition-all duration-200 transform hover:scale-105 w-full disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+          className={buttonClassName}
         >
           {loading ? 'Signing In...' : 'Sign In'}
         </button>
@@ -156,20 +169,23 @@ export default function AuthUI() {
         </div>
       )}
 
-      <div className="text-center">
+      <div className="text-center space-y-4">
         <button
           type="button"
-          onClick={() => setView('forgotten_password')}
-          className="text-blue-400 hover:text-blue-300 transition-colors duration-200 font-medium text-sm underline underline-offset-2 mb-4 block mx-auto"
+          onClick={switchToForgotPassword}
+          className={linkClassName}
         >
           Forgot your password?
         </button>
-        <Link
-          href="/signup"
-          className="text-blue-400 hover:text-blue-300 transition-colors duration-200 font-medium text-sm underline underline-offset-2"
-        >
-          Don't have an account? Sign up
-        </Link>
+
+        <div>
+          <Link
+            href="/signup"
+            className={linkClassName}
+          >
+            Don't have an account? Sign up
+          </Link>
+        </div>
       </div>
     </div>
   );
