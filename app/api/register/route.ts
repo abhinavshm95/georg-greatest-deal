@@ -48,6 +48,9 @@ export async function POST(req: Request) {
 
       if (error) throw error;
 
+      console.log("data", data);
+      
+
       const authUserId = data.user?.id;
       if (!authUserId) throw new Error('Failed to create user account');
 
@@ -85,7 +88,7 @@ export async function POST(req: Request) {
             .select('id')
             .eq('slug', category.slug)
             .single()
-            .then((res: any) => res.data.id),
+            .then((res: any) => res.data?.id),
           level: category.level
         }))
       );
