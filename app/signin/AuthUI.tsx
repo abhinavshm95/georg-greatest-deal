@@ -11,6 +11,7 @@ export default function AuthUI() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const [forgotPasswordLoading, setForgotPasswordLoading] = useState(false);
+  const [view, setView] = useState<'sign_in' | 'forgotten_password'>('sign_in');
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,9 +34,10 @@ export default function AuthUI() {
     }
   };
 
-  const handleForgotPassword = async () => {
+  const handleForgotPassword = async (e: React.FormEvent) => {
+    e.preventDefault();
     if (!email) {
-      setMessage('Please enter your email address first');
+      setMessage('Please enter your email address');
       return;
     }
 
@@ -58,6 +60,53 @@ export default function AuthUI() {
       setForgotPasswordLoading(false);
     }
   };
+
+  if (view === 'forgotten_password') {
+    return (
+      <div className="flex flex-col space-y-6">
+        <form onSubmit={handleForgotPassword} className="flex gap-6 flex-col">
+          <div>
+            <label htmlFor="email" className="block text-sm font-semibold leading-6 text-gray-200 mb-3">
+              Email address
+            </label>
+            <input
+              id="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="block w-full rounded-lg border-0 py-4 px-5 text-gray-900 bg-gray-100 ring-1 ring-inset ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-blue-500 focus:bg-white focus:border-transparent text-base transition-all duration-200 hover:bg-gray-50"
+              placeholder="Your email address"
+            />
+          </div>
+
+          <button
+            type="submit"
+            disabled={forgotPasswordLoading}
+            className="rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 px-10 py-4 text-base font-semibold text-white shadow-lg hover:from-blue-400 hover:to-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400 transition-all duration-200 transform hover:scale-105 w-full disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+          >
+            {forgotPasswordLoading ? 'Sending...' : 'Send reset password instructions'}
+          </button>
+        </form>
+
+        {message && (
+          <div className="text-sm bg-red-900/20 border border-red-500/30 text-red-300 p-4 rounded-lg mt-4 block backdrop-blur-sm">
+            {message}
+          </div>
+        )}
+
+        <div className="text-center">
+          <button
+            type="button"
+            onClick={() => setView('sign_in')}
+            className="text-blue-400 hover:text-blue-300 transition-colors duration-200 font-medium text-sm underline underline-offset-2"
+          >
+            Already have an account? Sign in
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col space-y-6">
@@ -110,11 +159,10 @@ export default function AuthUI() {
       <div className="text-center">
         <button
           type="button"
-          onClick={handleForgotPassword}
-          disabled={forgotPasswordLoading}
-          className="text-blue-400 hover:text-blue-300 transition-colors duration-200 font-medium text-sm underline underline-offset-2 disabled:opacity-50 disabled:cursor-not-allowed mb-4 block mx-auto"
+          onClick={() => setView('forgotten_password')}
+          className="text-blue-400 hover:text-blue-300 transition-colors duration-200 font-medium text-sm underline underline-offset-2 mb-4 block mx-auto"
         >
-          {forgotPasswordLoading ? 'Sending...' : 'Forgot your password?'}
+          Forgot your password?
         </button>
         <Link
           href="/signup"
