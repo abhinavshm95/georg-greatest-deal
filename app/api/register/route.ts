@@ -32,6 +32,7 @@ export async function POST(req: Request) {
         firstName,
         lastName,
         email,
+        password,
         phone,
         notificationFrequency,
         notificationChannel,
@@ -39,6 +40,17 @@ export async function POST(req: Request) {
         categories,
         affiliatePrograms
       } = await req.json();
+      // Create auth user first
+      const { data, error } = await supabaseAdmin.auth.signUp({
+        email: email as string,
+        password: password as string
+      });
+
+      if (error) throw error;
+
+      const authUserId = data.user?.id;
+      if (!authUserId) throw new Error('Failed to create user account');
+
       const jsonCategories = JSON.parse(categories);
       const jsonAffiliatePrograms = JSON.parse(affiliatePrograms);
 
@@ -52,7 +64,7 @@ export async function POST(req: Request) {
 
       const resultUserSignup = await supabaseAdmin.from('users').upsert([
         {
-          id: userId,
+          id: authUserId,
           first_name: firstName,
           last_name: lastName,
           full_name: `${firstName} ${lastName}`,
@@ -82,7 +94,7 @@ export async function POST(req: Request) {
         .from('deal_filter')
         .insert(
           enrichedCategories.map((category: IDBCategory) => ({
-            user: userId,
+            user: authUserId,
             min_score: null,
             category: category.id
           }))
@@ -96,7 +108,7 @@ export async function POST(req: Request) {
             .from('affiliate_amazon')
             .insert([
               {
-                user: userId,
+                user: authUserId,
                 affiliate_id: affiliateProgram.value
               }
             ]);
@@ -111,7 +123,7 @@ export async function POST(req: Request) {
             .from('affiliate_awin')
             .insert([
               {
-                user: userId,
+                user: authUserId,
                 affiliate_id: affiliateProgram.value
               }
             ]);

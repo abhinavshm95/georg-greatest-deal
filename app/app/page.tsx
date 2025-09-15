@@ -25,8 +25,8 @@ export default async function AppPage() {
         </p>
         <h2 className="text-2xl mb-4">How it works</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 mb-6 gap-6">
-          <div className="col-span-1 bg-indigo-50 p-6 lg:p-8 lg:pb-10 rounded-lg flex flex-col md:justify-between gap-6">
-            <FireIcon className="h-10 w-10 bg-indigo-600 text-white p-2 rounded-lg shrink-0" />
+          <div className="col-span-1 bg-primary-50 p-6 lg:p-8 lg:pb-10 rounded-lg flex flex-col md:justify-between gap-6">
+            <FireIcon className="h-10 w-10 bg-primary-600 text-white p-2 rounded-lg shrink-0" />
             <div className="md:mt-3">
               <h3 className="text-lg font-semibold">Step 1</h3>
               <p className="text-gray-600">
@@ -35,8 +35,8 @@ export default async function AppPage() {
               </p>
             </div>
           </div>
-          <div className="col-span-1 bg-indigo-50 p-6 lg:p-8 lg:pb-10 rounded-lg flex flex-col md:justify-between gap-6">
-            <LinkIcon className="h-10 w-10 bg-indigo-600 text-white p-2 rounded-lg shrink-0" />
+          <div className="col-span-1 bg-primary-50 p-6 lg:p-8 lg:pb-10 rounded-lg flex flex-col md:justify-between gap-6">
+            <LinkIcon className="h-10 w-10 bg-primary-600 text-white p-2 rounded-lg shrink-0" />
             <div className="md:mt-3">
               <h3 className="text-lg font-semibold">Step 2</h3>
               <p className="text-gray-600">
@@ -45,8 +45,8 @@ export default async function AppPage() {
               </p>
             </div>
           </div>
-          <div className="col-span-1 bg-indigo-50 p-6 lg:p-8 lg:pb-10 rounded-lg flex flex-col md:justify-between gap-6">
-            <CurrencyEuroIcon className="h-10 w-10 bg-indigo-600 text-white p-2 rounded-lg shrink-0" />
+          <div className="col-span-1 bg-primary-50 p-6 lg:p-8 lg:pb-10 rounded-lg flex flex-col md:justify-between gap-6">
+            <CurrencyEuroIcon className="h-10 w-10 bg-primary-600 text-white p-2 rounded-lg shrink-0" />
             <div className="">
               <h3 className="text-lg font-semibold">Step 3</h3>
               <p className="text-gray-600">

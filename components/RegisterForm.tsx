@@ -356,29 +356,16 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
 
       setLoading(true);
 
-      // Step 1: sign up user
-      const { data, error } = await supabase.auth.signUp({
-        email: formData.email as string,
-        password: formData.password as string
-      });
-
-      if (error) {
-        setSuccess(false);
-        setLoading(false);
-        setFormSubmitted(true);
-        throw new Error(error.message);
-      }
-
       try {
-        // add other data to the database
+        // Register user with all data
         const response = await fetch('/api/register', {
           method: 'POST',
           headers: new Headers({ 'Content-Type': 'application/json' }),
           body: JSON.stringify({
-            userId: data?.user?.id,
             firstName: formData.firstName,
             lastName: formData.lastName,
             email: formData.email,
+            password: formData.password,
             phone: formData.phone,
             notificationFrequency: pushNotificationsFrequency,
             notificationChannel: pushNotificationsChannel,
@@ -430,7 +417,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                   name="firstName"
                   id="firstName"
                   autoComplete="given-name"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
                   placeholder="John"
                   required
                 />
@@ -451,7 +438,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                   name="lastName"
                   id="lastName"
                   autoComplete="family-name"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
                   placeholder="Doe"
                   required
                 />
@@ -472,7 +459,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                   name="email"
                   type="email"
                   autoComplete="email"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
                   placeholder="john@doe.com"
                   required
                 />
@@ -493,7 +480,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                   name="phone"
                   type="tel"
                   autoComplete="phone"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
                   placeholder="+491234567890"
                   required
                 />
@@ -517,7 +504,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                   id="password"
                   name="password"
                   type="password"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
                   required
                 />
               </div>
@@ -547,7 +534,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                     id={`affiliateProgram${idx}`}
                     name={`affiliateProgram${idx}`}
                     autoComplete="affiliateProgram"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-400 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-400 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:max-w-xs sm:text-sm sm:leading-6"
                     disabled
                     value={affiliateProgram.name}
                   />
@@ -557,7 +544,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                     id={`affiliateId${idx}`}
                     name="affiliateId"
                     type="text"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-400 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-400 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
                     disabled
                     value={affiliateProgram.value}
                   />
@@ -569,7 +556,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                 id="affiliateProgram"
                 name="affiliateProgram"
                 autoComplete="affiliateProgram"
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:max-w-xs sm:text-sm sm:leading-6"
                 onChange={onChangeAffiliateProgram}
               >
                 <option>Amazon</option>
@@ -587,7 +574,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                     type="text"
                     placeholder="Affiliate ID"
                     className={cn(
-                      'block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6',
+                      'block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6',
                       noAffiliatePrograms ? 'ring-red-500' : 'ring-gray-300'
                     )}
                     onChange={(e) => {
@@ -597,7 +584,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                 </div>
                 <div className="sm:col-span-1 items-end flex">
                   <button
-                    className="rounded-md bg-indigo-600 p-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:hover:bg-gray-200"
+                    className="rounded-md bg-primary-600 p-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 disabled:hover:bg-gray-200"
                     onClick={onAddAffiliateProgramAmazon}
                     disabled={!currentAffiliateProgramValue}
                   >
@@ -616,7 +603,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                     type="text"
                     placeholder="Affiliate ID"
                     className={cn(
-                      'block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6',
+                      'block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6',
                       noAffiliatePrograms ? 'ring-red-500' : 'ring-gray-300'
                     )}
                     onChange={(e) => {
@@ -626,7 +613,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                 </div>
                 <div className="sm:col-span-1 items-end flex">
                   <button
-                    className="rounded-md bg-indigo-600 p-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    className="rounded-md bg-primary-600 p-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
                     onClick={onAddAffiliateProgramAwin}
                     disabled={!currentAffiliateProgramValue}
                   >
@@ -746,9 +733,9 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
               <button
                 type="button"
                 onClick={() => setBillingInterval('month')}
-                className={`px-6 py-2 rounded-md font-medium text-sm transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:z-10 ${
+                className={`px-6 py-2 rounded-md font-medium text-sm transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:z-10 ${
                   billingInterval === 'month'
-                    ? 'bg-indigo-600 text-white shadow'
+                    ? 'bg-primary-600 text-white shadow'
                     : 'text-gray-700 hover:bg-gray-100'
                 }`}
               >
@@ -757,9 +744,9 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
               <button
                 type="button"
                 onClick={() => setBillingInterval('year')}
-                className={`ml-1 px-6 py-2 rounded-md font-medium text-sm transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:z-10 ${
+                className={`ml-1 px-6 py-2 rounded-md font-medium text-sm transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:z-10 ${
                   billingInterval === 'year'
-                    ? 'bg-indigo-600 text-white shadow'
+                    ? 'bg-primary-600 text-white shadow'
                     : 'text-gray-700 hover:bg-gray-100'
                 }`}
               >
@@ -774,15 +761,15 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                 key={plan.product.id}
                 className={`relative flex-1 bg-white rounded-3xl shadow-lg flex flex-col items-center px-6 py-10 border transition-transform duration-200 cursor-pointer ${
                   selectedPrice?.id === plan.price?.id
-                    ? 'border-indigo-600 scale-105 z-10 shadow-2xl'
+                    ? 'border-primary-600 scale-105 z-10 shadow-2xl'
                     : plan.highlight
-                    ? 'border-indigo-600 scale-105 z-10 shadow-2xl'
+                    ? 'border-primary-600 scale-105 z-10 shadow-2xl'
                     : 'border-gray-200 hover:scale-105'
                 }`}
                 onClick={() => plan.price && handlePriceSelection(plan.price)}
               >
                 {plan.badge && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-indigo-600 text-white text-xs font-semibold px-4 py-1 rounded-full shadow">
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary-600 text-white text-xs font-semibold px-4 py-1 rounded-full shadow">
                     {plan.badge}
                   </div>
                 )}
@@ -807,7 +794,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                 </ul>
                 <div className={`w-full py-3 rounded-xl font-semibold text-center transition-colors duration-150 ${
                   selectedPrice?.id === plan.price?.id
-                    ? 'bg-indigo-600 text-white'
+                    ? 'bg-primary-600 text-white'
                     : 'bg-gray-100 text-gray-700'
                 }`}>
                   {selectedPrice?.id === plan.price?.id ? 'Selected' : 'Select Plan'}
@@ -837,7 +824,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
               <p className="mt-1 text-sm leading-6 text-gray-600">
                 How many deal notifications do you want to receive per day?
                 {selectedPrice && (
-                  <span className="block mt-1 text-xs text-indigo-600">
+                  <span className="block mt-1 text-xs text-primary-600">
                     {plans.find(plan => plan.price?.id === selectedPrice.id)?.product.name} Plan: {frequencyLimits.min} - {frequencyLimits.max} notifications per day
                   </span>
                 )}
@@ -857,7 +844,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                   min={frequencyLimits.min}
                   max={frequencyLimits.max}
                   value={pushNotificationsFrequency}
-                  className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer focus:ring-indigo-300 focus:ring-1 accent-indigo-600"
+                  className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer focus:ring-primary-300 focus:ring-1 accent-primary-600"
                   onChange={(e) =>
                     onPushNotificationsFrequencyChange(e.target.value)
                   }
@@ -886,7 +873,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                     id="pushWhatsapp"
                     name="push-notifications-channel"
                     type="radio"
-                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                    className="h-4 w-4 border-gray-300 text-primary-600 focus:ring-primary-600"
                     checked={pushNotificationsChannel === 'whatsapp'}
                     onChange={() =>
                       onPushNotificationsChannelChange('whatsapp')
@@ -904,7 +891,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                     id="pushEmail"
                     name="push-notifications-channel"
                     type="radio"
-                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                    className="h-4 w-4 border-gray-300 text-primary-600 focus:ring-primary-600"
                     checked={pushNotificationsChannel === 'email'}
                     onChange={() => onPushNotificationsChannelChange('email')}
                     disabled
@@ -935,7 +922,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                       id="allDeals"
                       name="all-deals"
                       type="checkbox"
-                      className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                      className="h-4 w-4 rounded border-gray-300 text-primary-600 focus:ring-primary-600"
                     />
                   </div>
                   <div className="text-sm leading-6">
@@ -955,7 +942,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
         <div>
           <p className="mt-1 leading-6 text-gray-600">
             By signing up you agree to the{' '}
-            <a href="/service-agreement" className="text-indigo-600">
+            <a href="/service-agreement" className="text-primary-600">
               Closed Beta Service Agreement
             </a>
             .
@@ -992,7 +979,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
         <div className="mt-6 flex items-center gap-x-6">
           <button
             type="submit"
-            className={`rounded-md bg-indigo-600 px-8 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 flex ${!selectedPrice ? 'opacity-50 cursor-not-allowed' : ''}`}
+            className={`rounded-md bg-primary-600 px-8 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 flex ${!selectedPrice ? 'opacity-50 cursor-not-allowed' : ''}`}
             disabled={loading || !selectedPrice}
           >
             {loading && (
@@ -1027,7 +1014,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
           </p>
           <p className="mt-6 text leading-6 text-gray-600">
             Please send any feedback to:{' '}
-            <a href="mailto:team@omg-ecom.com" className="text-indigo-600">
+            <a href="mailto:team@omg-ecom.com" className="text-primary-600">
               team@omg-ecom.com
             </a>
           </p>

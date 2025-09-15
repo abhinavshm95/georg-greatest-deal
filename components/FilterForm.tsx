@@ -448,7 +448,7 @@ const FilterForm = ({
               type="button"
               onClick={handleManageSubscription}
               disabled={manageSubLoading}
-              className={`rounded-md bg-indigo-600 px-8 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 flex items-center ${manageSubLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+              className={`rounded-md bg-primary-600 px-8 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 flex items-center ${manageSubLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
               {manageSubLoading && (
                 <svg
@@ -501,7 +501,7 @@ const FilterForm = ({
                   name="firstName"
                   id="firstName"
                   autoComplete="given-name"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
                   placeholder="John"
                   defaultValue={firstName}
                   required
@@ -523,7 +523,7 @@ const FilterForm = ({
                   name="lastName"
                   id="lastName"
                   autoComplete="family-name"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
                   placeholder="Doe"
                   defaultValue={lastName}
                   required
@@ -545,7 +545,7 @@ const FilterForm = ({
                   name="email"
                   type="email"
                   autoComplete="email"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-400 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 disabled:bg-gray-50"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-400 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6 disabled:bg-gray-50"
                   placeholder="john@doe.com"
                   defaultValue={email}
                   required
@@ -568,7 +568,7 @@ const FilterForm = ({
                   name="phone"
                   type="tel"
                   autoComplete="phone"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
                   placeholder="+491234567890"
                   defaultValue={phone}
                   required
@@ -593,7 +593,7 @@ const FilterForm = ({
                   id="password"
                   name="password"
                   type="password"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
                   required
                 />
               </div>
@@ -623,7 +623,7 @@ const FilterForm = ({
                     id={`affiliateProgram${idx}`}
                     name={`affiliateProgram${idx}`}
                     autoComplete="affiliateProgram"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:max-w-xs sm:text-sm sm:leading-6"
                     onChange={(e) => onChangeAffiliateProgram(e, idx)}
                     defaultValue={affiliateProgram.name}
                   >
@@ -636,7 +636,7 @@ const FilterForm = ({
                     id={`affiliateId${idx}`}
                     name="affiliateId"
                     type="text"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
                     defaultValue={affiliateProgram.value}
                     onChange={(e) => onChangeAffiliateProgramValue(e, idx)}
                   />
@@ -650,7 +650,7 @@ const FilterForm = ({
                   id="affiliateProgram"
                   name="affiliateProgram"
                   autoComplete="affiliateProgram"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:max-w-xs sm:text-sm sm:leading-6"
                   onChange={(e) => onChangeAffiliateProgram(e, -1)}
                 >
                   <option>Amazon</option>
@@ -660,7 +660,7 @@ const FilterForm = ({
             ) : (
               <div className="sm:col-span-1 items-end flex">
                 <button
-                  className="rounded-md bg-indigo-600 p-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:hover:bg-gray-200"
+                  className="rounded-md bg-primary-600 p-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 disabled:hover:bg-gray-200"
                   onClick={() => setAddAffiliateProgram(true)}
                 >
                   <PlusIcon className="h-5 w-5 text-white" />
@@ -678,7 +678,7 @@ const FilterForm = ({
                     type="text"
                     placeholder="Affiliate ID"
                     className={cn(
-                      'block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6',
+                      'block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6',
                       noAffiliatePrograms ? 'ring-red-500' : 'ring-gray-300'
                     )}
                     onChange={(e) => {
@@ -688,7 +688,7 @@ const FilterForm = ({
                 </div>
                 <div className="sm:col-span-1 items-end flex">
                   <button
-                    className="rounded-md bg-indigo-600 p-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:hover:bg-gray-200"
+                    className="rounded-md bg-primary-600 p-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 disabled:hover:bg-gray-200"
                     onClick={onAddAffiliateProgramAmazon}
                     disabled={!currentAffiliateProgramValue}
                   >
@@ -707,7 +707,7 @@ const FilterForm = ({
                     type="text"
                     placeholder="Affiliate ID"
                     className={cn(
-                      'block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6',
+                      'block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6',
                       noAffiliatePrograms ? 'ring-red-500' : 'ring-gray-300'
                     )}
                     onChange={(e) => {
@@ -717,7 +717,7 @@ const FilterForm = ({
                 </div>
                 <div className="sm:col-span-1 items-end flex">
                   <button
-                    className="rounded-md bg-indigo-600 p-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    className="rounded-md bg-primary-600 p-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
                     onClick={onAddAffiliateProgramAwin}
                     disabled={!currentAffiliateProgramValue}
                   >
@@ -765,7 +765,7 @@ const FilterForm = ({
               {loadingCategories ? (
                 <div className="h-12 rounded-lg border w-full flex justify-start items-center">
                   <svg
-                    className="animate-spin ml-4 h-5 w-5 text-indigo-600"
+                    className="animate-spin ml-4 h-5 w-5 text-primary-600"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -856,7 +856,7 @@ const FilterForm = ({
               <p className="mt-1 text-sm leading-6 text-gray-600">
                 How many deal notifications do you want to receive per day?
                 {subscription?.prices?.products?.max_notification_limit && (
-                  <span className="block mt-1 text-xs text-indigo-600">
+                  <span className="block mt-1 text-xs text-primary-600">
                     Your {subscription.prices.products.name} plan allows up to {subscription.prices.products.max_notification_limit} notifications per day.
                   </span>
                 )}
@@ -876,7 +876,7 @@ const FilterForm = ({
                   min="1"
                   max={maxDeals}
                   defaultValue={notificationFrequency}
-                  className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer focus:ring-indigo-300 focus:ring-1 accent-indigo-600"
+                  className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer focus:ring-primary-300 focus:ring-1 accent-primary-600"
                   onChange={(e) =>
                     onPushNotificationsFrequencyChange(e.target.value)
                   }
@@ -905,7 +905,7 @@ const FilterForm = ({
                     id="pushWhatsapp"
                     name="push-notifications-channel"
                     type="radio"
-                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                    className="h-4 w-4 border-gray-300 text-primary-600 focus:ring-primary-600"
                     checked={pushNotificationsChannel === 'whatsapp'}
                     onChange={() =>
                       onPushNotificationsChannelChange('whatsapp')
@@ -924,7 +924,7 @@ const FilterForm = ({
                     id="pushEmail"
                     name="push-notifications-channel"
                     type="radio"
-                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                    className="h-4 w-4 border-gray-300 text-primary-600 focus:ring-primary-600"
                     checked={pushNotificationsChannel === 'email'}
                     onChange={() => onPushNotificationsChannelChange('email')}
                     disabled
@@ -956,7 +956,7 @@ const FilterForm = ({
                       id="allDeals"
                       name="all-deals"
                       type="checkbox"
-                      className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                      className="h-4 w-4 rounded border-gray-300 text-primary-600 focus:ring-primary-600"
                       defaultChecked={notificationAllDeals}
                     />
                   </div>
@@ -976,7 +976,7 @@ const FilterForm = ({
         <div>
           <p className="mt-1 leading-6 text-gray-600">
             By using our service you agree to the{' '}
-            <a href="/service-agreement" className="text-indigo-600">
+            <a href="/service-agreement" className="text-primary-600">
               Closed Beta Service Agreement
             </a>
             .
@@ -1013,7 +1013,7 @@ const FilterForm = ({
         <div className="mt-6 flex items-center gap-x-6">
           <button
             type="submit"
-            className="rounded-md bg-indigo-600 px-8 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 flex"
+            className="rounded-md bg-primary-600 px-8 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 flex"
             disabled={loading}
           >
             {loading && (
@@ -1048,7 +1048,7 @@ const FilterForm = ({
           </p>
           <p className="mt-6 text leading-6 text-gray-600">
             Please send any feedback to:{' '}
-            <a href="mailto:team@omg-ecom.com" className="text-indigo-600">
+            <a href="mailto:team@omg-ecom.com" className="text-primary-600">
               team@omg-ecom.com
             </a>
           </p>

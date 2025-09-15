@@ -141,7 +141,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
                     {/* <div className="flex h-16 shrink-0 items-center">
                       <img
                         className="h-8 w-auto"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                        src="https://tailwindui.com/img/logos/mark.svg?color=blue&shade=600"
                         alt="Your Company"
                       />
                     </div> */}
@@ -153,9 +153,9 @@ export default function RootLayout({ children }: PropsWithChildren) {
                               if (item.disabled) {
                                 return (
                                   <li key={idx}>
-                                    <div className="text-gray-300 hover:text-indigo-300 hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                    <div className="text-gray-300 hover:text-primary-300 hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
                                       <item.icon
-                                        className="text-gray-300 group-hover:text-indigo-300 h-6 w-6 shrink-0"
+                                        className="text-gray-300 group-hover:text-primary-300 h-6 w-6 shrink-0"
                                         aria-hidden="true"
                                       />
                                       {item.name} (coming soon)
@@ -169,16 +169,16 @@ export default function RootLayout({ children }: PropsWithChildren) {
                                       href={item.href}
                                       className={classNames(
                                         pathname.includes(item.href)
-                                          ? 'bg-gray-50 text-indigo-600'
-                                          : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50',
+                                          ? 'bg-gray-50 text-primary-600'
+                                          : 'text-gray-700 hover:text-primary-600 hover:bg-gray-50',
                                         'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
                                       )}
                                     >
                                       <item.icon
                                         className={classNames(
                                           pathname.includes(item.href)
-                                            ? 'text-indigo-600'
-                                            : 'text-gray-400 group-hover:text-indigo-600',
+                                            ? 'text-primary-600'
+                                            : 'text-gray-400 group-hover:text-primary-600',
                                           'h-6 w-6 shrink-0'
                                         )}
                                         aria-hidden="true"
@@ -202,16 +202,16 @@ export default function RootLayout({ children }: PropsWithChildren) {
                                   href={team.href}
                                   className={classNames(
                                     team.current
-                                      ? 'bg-gray-50 text-indigo-600'
-                                      : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50',
+                                      ? 'bg-gray-50 text-primary-600'
+                                      : 'text-gray-700 hover:text-primary-600 hover:bg-gray-50',
                                     'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
                                   )}
                                 >
                                   <span
                                     className={classNames(
                                       team.current
-                                        ? 'text-indigo-600 border-indigo-600'
-                                        : 'text-gray-400 border-gray-200 group-hover:border-indigo-600 group-hover:text-indigo-600',
+                                        ? 'text-primary-600 border-primary-600'
+                                        : 'text-gray-400 border-gray-200 group-hover:border-primary-600 group-hover:text-primary-600',
                                       'flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white'
                                     )}
                                   >
@@ -228,16 +228,16 @@ export default function RootLayout({ children }: PropsWithChildren) {
                             href="/tgd/settings"
                             className={classNames(
                               pathname.includes('/tgd/settings')
-                                ? 'bg-gray-50 text-indigo-600'
-                                : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50',
+                                ? 'bg-gray-50 text-primary-600'
+                                : 'text-gray-700 hover:text-primary-600 hover:bg-gray-50',
                               'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
                             )}
                           >
                             <Cog6ToothIcon
                               className={classNames(
                                 pathname.includes('/tgd/settings')
-                                  ? 'text-indigo-600'
-                                  : 'text-gray-400 group-hover:text-indigo-600',
+                                  ? 'text-primary-600'
+                                  : 'text-gray-400 group-hover:text-primary-600',
                                 'h-6 w-6 shrink-0'
                               )}
                               aria-hidden="true"
@@ -261,7 +261,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
             {/* <div className="flex h-16 shrink-0 items-center">
               <img
                 className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                src="https://tailwindui.com/img/logos/mark.svg?color=blue&shade=600"
                 alt="Your Company"
               />
             </div> */}
@@ -273,9 +273,9 @@ export default function RootLayout({ children }: PropsWithChildren) {
                       if (item.disabled) {
                         return (
                           <li key={idx}>
-                            <div className="text-gray-300 hover:text-indigo-300 hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                            <div className="text-gray-300 hover:text-primary-300 hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
                               <item.icon
-                                className="text-gray-300 group-hover:text-indigo-300 h-6 w-6 shrink-0"
+                                className="text-gray-300 group-hover:text-primary-300 h-6 w-6 shrink-0"
                                 aria-hidden="true"
                               />
                               {item.name} (coming soon)
@@ -289,16 +289,16 @@ export default function RootLayout({ children }: PropsWithChildren) {
                               href={item.href}
                               className={classNames(
                                 pathname.includes(item.href)
-                                  ? 'bg-gray-50 text-indigo-600'
-                                  : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50',
+                                  ? 'bg-gray-50 text-primary-600'
+                                  : 'text-gray-700 hover:text-primary-600 hover:bg-gray-50',
                                 'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
                               )}
                             >
                               <item.icon
                                 className={classNames(
                                   pathname.includes(item.href)
-                                    ? 'text-indigo-600'
-                                    : 'text-gray-400 group-hover:text-indigo-600',
+                                    ? 'text-primary-600'
+                                    : 'text-gray-400 group-hover:text-primary-600',
                                   'h-6 w-6 shrink-0'
                                 )}
                                 aria-hidden="true"
@@ -322,16 +322,16 @@ export default function RootLayout({ children }: PropsWithChildren) {
                           href={team.href}
                           className={classNames(
                             team.current
-                              ? 'bg-gray-50 text-indigo-600'
-                              : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50',
+                              ? 'bg-gray-50 text-primary-600'
+                              : 'text-gray-700 hover:text-primary-600 hover:bg-gray-50',
                             'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
                           )}
                         >
                           <span
                             className={classNames(
                               team.current
-                                ? 'text-indigo-600 border-indigo-600'
-                                : 'text-gray-400 border-gray-200 group-hover:border-indigo-600 group-hover:text-indigo-600',
+                                ? 'text-primary-600 border-primary-600'
+                                : 'text-gray-400 border-gray-200 group-hover:border-primary-600 group-hover:text-primary-600',
                               'flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white'
                             )}
                           >
@@ -348,16 +348,16 @@ export default function RootLayout({ children }: PropsWithChildren) {
                     href="/tgd/settings"
                     className={classNames(
                       pathname.includes('/tgd/settings')
-                        ? 'bg-gray-50 text-indigo-600'
-                        : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50',
+                        ? 'bg-gray-50 text-primary-600'
+                        : 'text-gray-700 hover:text-primary-600 hover:bg-gray-50',
                       'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
                     )}
                   >
                     <Cog6ToothIcon
                       className={classNames(
                         pathname.includes('/tgd/settings')
-                          ? 'text-indigo-600'
-                          : 'text-gray-400 group-hover:text-indigo-600',
+                          ? 'text-primary-600'
+                          : 'text-gray-400 group-hover:text-primary-600',
                         'h-6 w-6 shrink-0'
                       )}
                       aria-hidden="true"
