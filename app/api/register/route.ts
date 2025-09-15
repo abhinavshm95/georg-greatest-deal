@@ -82,15 +82,22 @@ export async function POST(req: Request) {
       if (resultUserSignup.error) throw resultUserSignup.error;
 
       const enrichedCategories = await Promise.all(
-        jsonCategories.map(async (category: IRawCategory) => ({
-          id: await supabaseAdmin
+        jsonCategories.map(async (category: IRawCategory) => {
+          const { data, error } = await supabaseAdmin
             .from('categories')
             .select('id')
             .eq('slug', category.slug)
-            .single()
-            .then((res: any) => res.data?.id),
-          level: category.level
-        }))
+            .single();
+
+          if (error || !data?.id) {
+            throw new Error(`Category with slug '${category.slug}' not found`);
+          }
+
+          return {
+            id: data.id,
+            level: category.level
+          };
+        })
       );
 
       const resultCategoriesFilter = await supabaseAdmin
