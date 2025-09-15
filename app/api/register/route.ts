@@ -40,6 +40,27 @@ export async function POST(req: Request) {
         categories,
         affiliatePrograms
       } = await req.json();
+
+      const enrichedCategories = await Promise.all(
+        JSON.parse(categories).map(async (category: IRawCategory) => {
+          const { data, error } = await supabaseAdmin
+            .from('categories')
+            .select('id')
+            .eq('slug', category.slug)
+            .single();
+
+          if (error || !data?.id) {
+            throw new Error(`Category with slug '${category.slug}' not found`);
+          }
+
+          return {
+            id: data.id,
+            level: category.level
+          };
+        })
+      );
+        
+
       // Create auth user first
       const { data, error } = await supabaseAdmin.auth.signUp({
         email: email as string,
@@ -48,13 +69,10 @@ export async function POST(req: Request) {
 
       if (error) throw error;
 
-      console.log("data", data);
-      
-
       const authUserId = data.user?.id;
       if (!authUserId) throw new Error('Failed to create user account');
 
-      const jsonCategories = JSON.parse(categories);
+      // const jsonCategories = JSON.parse(categories);
       const jsonAffiliatePrograms = JSON.parse(affiliatePrograms);
 
       const amazonAffiliatePrograms = jsonAffiliatePrograms.filter(
@@ -80,25 +98,6 @@ export async function POST(req: Request) {
       ]);
 
       if (resultUserSignup.error) throw resultUserSignup.error;
-
-      const enrichedCategories = await Promise.all(
-        jsonCategories.map(async (category: IRawCategory) => {
-          const { data, error } = await supabaseAdmin
-            .from('categories')
-            .select('id')
-            .eq('slug', category.slug)
-            .single();
-
-          if (error || !data?.id) {
-            throw new Error(`Category with slug '${category.slug}' not found`);
-          }
-
-          return {
-            id: data.id,
-            level: category.level
-          };
-        })
-      );
 
       const resultCategoriesFilter = await supabaseAdmin
         .from('deal_filter')
