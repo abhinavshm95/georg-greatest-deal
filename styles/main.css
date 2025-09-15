@@ -190,3 +190,26 @@ a {
   ring: 2px;
   ring-color: rgba(59, 130, 246, 0.5);
 }
+
+/* Supabase Auth UI text styling overrides for dark theme */
+[data-supabase] p,
+[data-supabase] span:not(.sr-only) {
+  color: #d1d5db !important;
+}
+
+[data-supabase] a {
+  color: #60a5fa !important;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  font-weight: 500;
+  transition: color 0.2s ease-in-out;
+}
+
+[data-supabase] a:hover {
+  color: #93c5fd !important;
+}
+
+/* Fix any remaining dark text in auth forms */
+.supabase-auth-ui_ui div:not([class*="button"]):not([class*="input"]) {
+  color: #d1d5db;
+}

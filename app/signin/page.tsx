@@ -12,13 +12,14 @@ export default async function SignIn() {
   }
 
   return (
-    <div className="h-screen flex flex-col justify-between w-screen">
+    <div className="min-h-screen bg-vira-dark flex flex-col justify-between w-screen">
       <div className="flex justify-center my-auto">
-        <div className="flex flex-col justify-between max-w-lg p-3 m-auto w-80 ">
-          <h1 className="text-4xl text-center mb-8">Login</h1>
-          {/* <div className="flex justify-center pb-12 ">
+        <div className="bg-vira-card rounded-3xl shadow-2xl border border-gray-800 p-12 max-w-lg w-full mx-6">
+          <div className="flex justify-center pb-8">
             <Logo width="64px" height="64px" />
-          </div> */}
+          </div>
+          <h1 className="text-4xl font-bold text-center mb-8 text-white">Welcome Back</h1>
+          <p className="text-gray-300 text-center mb-8">Sign in to your account to continue</p>
           <AuthUI />
         </div>
       </div>
