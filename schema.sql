@@ -6,7 +6,14 @@ create table users (
   -- UUID from auth.users
   id uuid references auth.users not null primary key,
   full_name text,
+  first_name text,
+  last_name text,
+  email text,
+  phone_mobile text,
   avatar_url text,
+  notification_limit_per_day integer,
+  push_notification_channel text,
+  push_notification_all_deals boolean,
   -- The customer's billing address, stored in JSON format.
   billing_address jsonb,
   -- Stores your customer's payment instruments.
@@ -15,6 +22,7 @@ create table users (
 alter table users enable row level security;
 create policy "Can view own user data." on users for select using (auth.uid() = id);
 create policy "Can update own user data." on users for update using (auth.uid() = id);
+create policy "Can insert own user data." on users for insert with check (auth.uid() = id);
 
 /**
 * This trigger automatically creates a user entry when a new user signs up via Supabase Auth.
