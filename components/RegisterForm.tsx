@@ -358,16 +358,28 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
 
       setLoading(true);
 
+      const { data, error } = await supabase.auth.signUp({
+        email: formData.email as string,
+        password: formData.password as string
+      });
+
+      if (error) {
+        setSuccess(false);
+        setLoading(false);
+        setFormSubmitted(true);
+        throw new Error(error.message);
+      }
+
       try {
         // Register user with all data
         const response = await fetch('/api/register', {
           method: 'POST',
           headers: new Headers({ 'Content-Type': 'application/json' }),
           body: JSON.stringify({
+            userId: data.user?.id,
             firstName: formData.firstName,
             lastName: formData.lastName,
             email: formData.email,
-            password: formData.password,
             phone: formData.phone,
             notificationFrequency: pushNotificationsFrequency,
             notificationChannel: pushNotificationsChannel,

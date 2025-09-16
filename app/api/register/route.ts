@@ -46,17 +46,8 @@ export async function POST(req: Request) {
         id: category.id,
         level: category.level
       }));
-        
 
-      // Create auth user first
-      const { data, error } = await supabaseAdmin.auth.signUp({
-        email: email as string,
-        password: password as string
-      });
-
-      if (error) throw error;
-
-      const authUserId = data.user?.id;
+      const authUserId = userId;
       if (!authUserId) throw new Error('Failed to create user account');
 
       // const jsonCategories = JSON.parse(categories);
