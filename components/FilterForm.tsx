@@ -408,47 +408,47 @@ const FilterForm = ({
 
   return (
     <>
-    <div className="border-b border-gray-900/10 pb-12">
-          <h3 className="text-base font-semibold leading-7 text-gray-900">
+    <div className="border-b border-gray-700 pb-12">
+          <h3 className="text-base font-semibold leading-7 text-white">
             Subscription Management
           </h3>
-          <p className="mt-1 text-sm leading-6 text-gray-600">
+          <p className="mt-1 text-sm leading-6 text-gray-300">
             Manage your subscription, update payment methods, and view billing history.
           </p>
           <div className="mt-10">
             {subLoading ? (
-              <div className="text-gray-500">Loading subscription info...</div>
+              <div className="text-gray-400">Loading subscription info...</div>
             ) : subscription ? (
               <div className="mb-4 space-y-2">
                 <div className="flex justify-between">
-                  <span className="text-sm text-gray-600">Status:</span>
-                  <span className="text-sm font-medium text-gray-900">{subscription.status?.toUpperCase()}</span>
+                  <span className="text-sm text-gray-300">Status:</span>
+                  <span className="text-sm font-medium text-white">{subscription.status?.toUpperCase()}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-sm text-gray-600">Plan:</span>
-                  <span className="text-sm font-medium text-gray-900">{subscription.prices?.products?.name || 'N/A'}</span>
+                  <span className="text-sm text-gray-300">Plan:</span>
+                  <span className="text-sm font-medium text-white">{subscription.prices?.products?.name || 'N/A'}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-sm text-gray-600">Start Date:</span>
-                  <span className="text-sm font-medium text-gray-900">
+                  <span className="text-sm text-gray-300">Start Date:</span>
+                  <span className="text-sm font-medium text-white">
                     {subscription.current_period_start ? new Date(subscription.current_period_start).toLocaleDateString() : 'N/A'}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-sm text-gray-600">Max Notifications:</span>
-                  <span className="text-sm font-medium text-gray-900">
+                  <span className="text-sm text-gray-300">Max Notifications:</span>
+                  <span className="text-sm font-medium text-white">
                     {subscription.prices?.products?.max_notification_limit || 'N/A'} per day
                   </span>
                 </div>
               </div>
             ) : (
-              <div className="mb-4 text-gray-500">No active subscription found.</div>
+              <div className="mb-4 text-gray-400">No active subscription found.</div>
             )}
             <button
               type="button"
               onClick={handleManageSubscription}
               disabled={manageSubLoading}
-              className={`rounded-md bg-primary-600 px-8 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 flex items-center ${manageSubLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+              className={`rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 px-8 py-3 text-sm font-semibold text-white shadow-lg hover:from-blue-400 hover:to-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400 transition-all duration-200 transform hover:scale-105 flex items-center ${manageSubLoading ? 'opacity-50 cursor-not-allowed transform-none' : ''}`}
             >
               {manageSubLoading && (
                 <svg
@@ -478,11 +478,11 @@ const FilterForm = ({
         </div>
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="my-8 space-y-8 max-w-screen-md">
-        <div className="border-b border-gray-900/10 pb-12">
-          <h3 className="text-base font-semibold leading-7 text-gray-900">
+        <div className="border-b border-gray-700 pb-12">
+          <h3 className="text-base font-semibold leading-7 text-white">
             Personal Information
           </h3>
-          <p className="mt-1 text-sm leading-6 text-gray-600">
+          <p className="mt-1 text-sm leading-6 text-gray-300">
             Use a permanent address where you can receive mail.
           </p>
 
@@ -490,7 +490,7 @@ const FilterForm = ({
             <div className="sm:col-span-3">
               <label
                 htmlFor="firstName"
-                className="block text-sm font-medium leading-6 text-gray-900"
+                className="block text-sm font-medium leading-6 text-gray-200"
               >
                 First name*
               </label>
@@ -501,7 +501,7 @@ const FilterForm = ({
                   name="firstName"
                   id="firstName"
                   autoComplete="given-name"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-lg border-0 py-3 px-4 text-white bg-gray-700 shadow-sm ring-1 ring-inset ring-gray-600 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 focus:bg-gray-600 sm:text-sm sm:leading-6 transition-all duration-200"
                   placeholder="John"
                   defaultValue={firstName}
                   required
@@ -512,7 +512,7 @@ const FilterForm = ({
             <div className="sm:col-span-3">
               <label
                 htmlFor="lastName"
-                className="block text-sm font-medium leading-6 text-gray-900"
+                className="block text-sm font-medium leading-6 text-gray-200"
               >
                 Last name*
               </label>
@@ -523,7 +523,7 @@ const FilterForm = ({
                   name="lastName"
                   id="lastName"
                   autoComplete="family-name"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-lg border-0 py-3 px-4 text-white bg-gray-700 shadow-sm ring-1 ring-inset ring-gray-600 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 focus:bg-gray-600 sm:text-sm sm:leading-6 transition-all duration-200"
                   placeholder="Doe"
                   defaultValue={lastName}
                   required
@@ -534,7 +534,7 @@ const FilterForm = ({
             <div className="sm:col-span-3">
               <label
                 htmlFor="email"
-                className="block text-sm font-medium leading-6 text-gray-900"
+                className="block text-sm font-medium leading-6 text-gray-200"
               >
                 Email address* (can not be changed)
               </label>
@@ -545,7 +545,7 @@ const FilterForm = ({
                   name="email"
                   type="email"
                   autoComplete="email"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-400 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6 disabled:bg-gray-50"
+                  className="block w-full rounded-lg border-0 py-3 px-4 text-gray-400 bg-gray-800 shadow-sm ring-1 ring-inset ring-gray-600 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm sm:leading-6 disabled:bg-gray-800 disabled:opacity-60"
                   placeholder="john@doe.com"
                   defaultValue={email}
                   required
@@ -557,7 +557,7 @@ const FilterForm = ({
             <div className="sm:col-span-3">
               <label
                 htmlFor="phone"
-                className="block text-sm font-medium leading-6 text-gray-900"
+                className="block text-sm font-medium leading-6 text-gray-200"
               >
                 Mobile Phone*
               </label>
@@ -568,7 +568,7 @@ const FilterForm = ({
                   name="phone"
                   type="tel"
                   autoComplete="phone"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-lg border-0 py-3 px-4 text-white bg-gray-700 shadow-sm ring-1 ring-inset ring-gray-600 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 focus:bg-gray-600 sm:text-sm sm:leading-6 transition-all duration-200"
                   placeholder="+491234567890"
                   defaultValue={phone}
                   required
@@ -602,13 +602,13 @@ const FilterForm = ({
         </div>
 
         <div
-          className="border-b border-gray-900/10 pb-12"
+          className="border-b border-gray-700 pb-12"
           id="affiliate-programs"
         >
-          <h3 className="text-base font-semibold leading-7 text-gray-900">
+          <h3 className="text-base font-semibold leading-7 text-white">
             Affiliate Programs
           </h3>
-          <p className="mt-1 text-sm leading-6 text-gray-600">
+          <p className="mt-1 text-sm leading-6 text-gray-300">
             To start, all you need is an account with the Amazon Associates
             Program and/ or AWIN to monetize the links we will send you.{' '}
             <br></br> We will automatically add your account-ID to the links we
@@ -623,7 +623,7 @@ const FilterForm = ({
                     id={`affiliateProgram${idx}`}
                     name={`affiliateProgram${idx}`}
                     autoComplete="affiliateProgram"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                    className="block w-full rounded-lg border-0 py-3 px-4 text-white bg-gray-700 shadow-sm ring-1 ring-inset ring-gray-600 focus:ring-2 focus:ring-inset focus:ring-blue-500 focus:bg-gray-600 sm:max-w-xs sm:text-sm sm:leading-6 transition-all duration-200"
                     onChange={(e) => onChangeAffiliateProgram(e, idx)}
                     defaultValue={affiliateProgram.name}
                   >
@@ -636,7 +636,7 @@ const FilterForm = ({
                     id={`affiliateId${idx}`}
                     name="affiliateId"
                     type="text"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-lg border-0 py-3 px-4 text-white bg-gray-700 shadow-sm ring-1 ring-inset ring-gray-600 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 focus:bg-gray-600 sm:text-sm sm:leading-6 transition-all duration-200"
                     defaultValue={affiliateProgram.value}
                     onChange={(e) => onChangeAffiliateProgramValue(e, idx)}
                   />
@@ -650,7 +650,7 @@ const FilterForm = ({
                   id="affiliateProgram"
                   name="affiliateProgram"
                   autoComplete="affiliateProgram"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                  className="block w-full rounded-lg border-0 py-3 px-4 text-white bg-gray-700 shadow-sm ring-1 ring-inset ring-gray-600 focus:ring-2 focus:ring-inset focus:ring-blue-500 focus:bg-gray-600 sm:max-w-xs sm:text-sm sm:leading-6 transition-all duration-200"
                   onChange={(e) => onChangeAffiliateProgram(e, -1)}
                 >
                   <option>Amazon</option>
@@ -660,7 +660,7 @@ const FilterForm = ({
             ) : (
               <div className="sm:col-span-1 items-end flex">
                 <button
-                  className="rounded-md bg-primary-600 p-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 disabled:hover:bg-gray-200"
+                  className="rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 p-3 text-sm font-semibold text-white shadow-lg hover:from-blue-400 hover:to-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400 transition-all duration-200 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                   onClick={() => setAddAffiliateProgram(true)}
                 >
                   <PlusIcon className="h-5 w-5 text-white" />
@@ -678,8 +678,8 @@ const FilterForm = ({
                     type="text"
                     placeholder="Affiliate ID"
                     className={cn(
-                      'block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6',
-                      noAffiliatePrograms ? 'ring-red-500' : 'ring-gray-300'
+                      'block w-full rounded-lg border-0 py-3 px-4 text-white bg-gray-700 shadow-sm ring-1 ring-inset placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 focus:bg-gray-600 sm:text-sm sm:leading-6 transition-all duration-200',
+                      noAffiliatePrograms ? 'ring-red-500' : 'ring-gray-600'
                     )}
                     onChange={(e) => {
                       setCurrentAffiliateProgramValue(e.target.value);
@@ -688,7 +688,7 @@ const FilterForm = ({
                 </div>
                 <div className="sm:col-span-1 items-end flex">
                   <button
-                    className="rounded-md bg-primary-600 p-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 disabled:hover:bg-gray-200"
+                    className="rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 p-3 text-sm font-semibold text-white shadow-lg hover:from-blue-400 hover:to-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400 transition-all duration-200 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                     onClick={onAddAffiliateProgramAmazon}
                     disabled={!currentAffiliateProgramValue}
                   >
@@ -707,8 +707,8 @@ const FilterForm = ({
                     type="text"
                     placeholder="Affiliate ID"
                     className={cn(
-                      'block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6',
-                      noAffiliatePrograms ? 'ring-red-500' : 'ring-gray-300'
+                      'block w-full rounded-lg border-0 py-3 px-4 text-white bg-gray-700 shadow-sm ring-1 ring-inset placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 focus:bg-gray-600 sm:text-sm sm:leading-6 transition-all duration-200',
+                      noAffiliatePrograms ? 'ring-red-500' : 'ring-gray-600'
                     )}
                     onChange={(e) => {
                       setCurrentAffiliateProgramValue(e.target.value);
@@ -717,7 +717,7 @@ const FilterForm = ({
                 </div>
                 <div className="sm:col-span-1 items-end flex">
                   <button
-                    className="rounded-md bg-primary-600 p-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
+                    className="rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 p-3 text-sm font-semibold text-white shadow-lg hover:from-blue-400 hover:to-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400 transition-all duration-200 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                     onClick={onAddAffiliateProgramAwin}
                     disabled={!currentAffiliateProgramValue}
                   >
@@ -728,7 +728,7 @@ const FilterForm = ({
             ) : null}
           </div>
           {noAffiliatePrograms && (
-            <div className="rounded-md bg-red-50 p-4 mt-6">
+            <div className="rounded-lg bg-red-900/20 border border-red-500/30 p-4 mt-6 backdrop-blur-sm">
               <div className="flex">
                 <div className="flex-shrink-0">
                   <ExclamationTriangleIcon
@@ -737,10 +737,10 @@ const FilterForm = ({
                   />
                 </div>
                 <div className="ml-3">
-                  <h3 className="text-sm font-medium text-red-800">
+                  <h3 className="text-sm font-medium text-red-300">
                     There were an error with your submission
                   </h3>
-                  <div className="mt-2 text-sm text-red-700">
+                  <div className="mt-2 text-sm text-red-300">
                     <p>It is required to add at least one affiliate ID.</p>
                   </div>
                 </div>
@@ -749,23 +749,23 @@ const FilterForm = ({
           )}
         </div>
 
-        <div className="border-b border-gray-900/10 pb-12" id="categories">
-          <h3 className="text-base font-semibold leading-7 text-gray-900">
+        <div className="border-b border-gray-700 pb-12" id="categories">
+          <h3 className="text-base font-semibold leading-7 text-white">
             Category and Brand Preferences
           </h3>
-          <p className="mt-1 text-sm leading-6 text-gray-600">
+          <p className="mt-1 text-sm leading-6 text-gray-300">
             Select the categories and brands you are interested in.
           </p>
 
-          <p className="text-sm font-semibold leading-6 text-gray-900 mt-10">
+          <p className="text-sm font-semibold leading-6 text-white mt-10">
             Categories and Brands
           </p>
           <div className="mt-2 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div className="card flex justify-content-center w-100 col-span-full">
               {loadingCategories ? (
-                <div className="h-12 rounded-lg border w-full flex justify-start items-center">
+                <div className="h-12 rounded-lg border border-gray-600 bg-gray-700 w-full flex justify-start items-center">
                   <svg
-                    className="animate-spin ml-4 h-5 w-5 text-primary-600"
+                    className="animate-spin ml-4 h-5 w-5 text-blue-500"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -793,7 +793,7 @@ const FilterForm = ({
                   }}
                   options={allCategories}
                   metaKeySelection={false}
-                  className="md:w-20rem w-full border border-gray-300 rounded-md"
+                  className="md:w-20rem w-full border border-gray-600 bg-gray-700 text-white rounded-lg"
                   selectionMode="checkbox"
                   placeholder="Select Categories and Brands"
                   filter
@@ -817,7 +817,7 @@ const FilterForm = ({
             </div>
           </div>
           {noCategories && (
-            <div className="rounded-md bg-red-50 p-4 mt-6">
+            <div className="rounded-lg bg-red-900/20 border border-red-500/30 p-4 mt-6 backdrop-blur-sm">
               <div className="flex">
                 <div className="flex-shrink-0">
                   <ExclamationTriangleIcon
@@ -826,10 +826,10 @@ const FilterForm = ({
                   />
                 </div>
                 <div className="ml-3">
-                  <h3 className="text-sm font-medium text-red-800">
+                  <h3 className="text-sm font-medium text-red-300">
                     There were an error with your submission
                   </h3>
-                  <div className="mt-2 text-sm text-red-700">
+                  <div className="mt-2 text-sm text-red-300">
                     <p>
                       It is required to select at least one category or one
                       brand.
@@ -841,28 +841,28 @@ const FilterForm = ({
           )}
         </div>
 
-        <div className="border-b border-gray-900/10 pb-12">
-          <h3 className="text-base font-semibold leading-7 text-gray-900">
+        <div className="border-b border-gray-700 pb-12">
+          <h3 className="text-base font-semibold leading-7 text-white">
             Notifications
           </h3>
-          <p className="mt-1 text-sm leading-6 text-gray-600">
+          <p className="mt-1 text-sm leading-6 text-gray-300">
             Set your notifications preferences.
           </p>
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <fieldset className="col-span-full">
-              <legend className="text-sm font-semibold leading-6 text-gray-900">
+              <legend className="text-sm font-semibold leading-6 text-white">
                 Frequency
               </legend>
-              <p className="mt-1 text-sm leading-6 text-gray-600">
+              <p className="mt-1 text-sm leading-6 text-gray-300">
                 How many deal notifications do you want to receive per day?
                 {subscription?.prices?.products?.max_notification_limit && (
-                  <span className="block mt-1 text-xs text-primary-600">
+                  <span className="block mt-1 text-xs text-blue-400">
                     Your {subscription.prices.products.name} plan allows up to {subscription.prices.products.max_notification_limit} notifications per day.
                   </span>
                 )}
               </p>
               <div className="relative my-6 mb-2">
-                <span className="text-xl">
+                <span className="text-xl text-white">
                   ~ {pushNotificationsFrequency} per Day
                 </span>
               </div>
@@ -876,25 +876,25 @@ const FilterForm = ({
                   min="1"
                   max={maxDeals}
                   defaultValue={notificationFrequency}
-                  className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer focus:ring-primary-300 focus:ring-1 accent-primary-600"
+                  className="w-full h-2 bg-gray-600 rounded-lg appearance-none cursor-pointer focus:ring-blue-500 focus:ring-1 accent-blue-500"
                   onChange={(e) =>
                     onPushNotificationsFrequencyChange(e.target.value)
                   }
                 />
-                <span className="text-sm text-gray-500 dark:text-gray-400 absolute start-0 -bottom-6">
+                <span className="text-sm text-gray-400 absolute start-0 -bottom-6">
                   ~ 1 per Day
                 </span>
-                <span className="text-sm text-gray-500 dark:text-gray-400 absolute end-0 -bottom-6">
+                <span className="text-sm text-gray-400 absolute end-0 -bottom-6">
                   ~ {maxDeals} per Day
                 </span>
               </div>
             </fieldset>
 
             <fieldset className="col-span-full">
-              <legend className="text-sm font-semibold leading-6 text-gray-900">
+              <legend className="text-sm font-semibold leading-6 text-white">
                 Channel
               </legend>
-              <p className="mt-1 text-sm leading-6 text-gray-600">
+              <p className="mt-1 text-sm leading-6 text-gray-300">
                 These are delivered via WhatsApp to your mobile phone or via
                 email.
               </p>
@@ -905,7 +905,7 @@ const FilterForm = ({
                     id="pushWhatsapp"
                     name="push-notifications-channel"
                     type="radio"
-                    className="h-4 w-4 border-gray-300 text-primary-600 focus:ring-primary-600"
+                    className="h-4 w-4 border-gray-600 text-blue-500 focus:ring-blue-500 bg-gray-700"
                     checked={pushNotificationsChannel === 'whatsapp'}
                     onChange={() =>
                       onPushNotificationsChannelChange('whatsapp')
@@ -914,7 +914,7 @@ const FilterForm = ({
                   />
                   <label
                     htmlFor="pushWhatsapp"
-                    className="block text-sm font-medium leading-6 text-gray-900"
+                    className="block text-sm font-medium leading-6 text-white"
                   >
                     WhatsApp
                   </label>
@@ -924,7 +924,7 @@ const FilterForm = ({
                     id="pushEmail"
                     name="push-notifications-channel"
                     type="radio"
-                    className="h-4 w-4 border-gray-300 text-primary-600 focus:ring-primary-600"
+                    className="h-4 w-4 border-gray-600 text-blue-500 focus:ring-blue-500 bg-gray-700 disabled:opacity-50"
                     checked={pushNotificationsChannel === 'email'}
                     onChange={() => onPushNotificationsChannelChange('email')}
                     disabled
@@ -932,7 +932,7 @@ const FilterForm = ({
                   />
                   <label
                     htmlFor="pushEmail"
-                    className="block text-sm font-medium leading-6 text-gray-300"
+                    className="block text-sm font-medium leading-6 text-gray-400"
                   >
                     Email
                   </label>
@@ -941,10 +941,10 @@ const FilterForm = ({
             </fieldset>
 
             <fieldset className="col-span-full">
-              <legend className="text-sm font-semibold leading-6 text-gray-900">
+              <legend className="text-sm font-semibold leading-6 text-white">
                 All Deals
               </legend>
-              <p className="mt-1 text-sm leading-6 text-gray-600">
+              <p className="mt-1 text-sm leading-6 text-gray-300">
                 Get notified when a new deal is posted, regardless of your
                 affiliate program preferences.
               </p>
@@ -956,14 +956,14 @@ const FilterForm = ({
                       id="allDeals"
                       name="all-deals"
                       type="checkbox"
-                      className="h-4 w-4 rounded border-gray-300 text-primary-600 focus:ring-primary-600"
+                      className="h-4 w-4 rounded border-gray-600 bg-gray-700 text-blue-500 focus:ring-blue-500"
                       defaultChecked={notificationAllDeals}
                     />
                   </div>
                   <div className="text-sm leading-6">
                     <label
                       htmlFor="allDeals"
-                      className="font-medium text-gray-900"
+                      className="font-medium text-white"
                     >
                       All Deals notifications
                     </label>
@@ -974,9 +974,9 @@ const FilterForm = ({
           </div>
         </div>
         <div>
-          <p className="mt-1 leading-6 text-gray-600">
+          <p className="mt-1 leading-6 text-gray-300">
             By using our service you agree to the{' '}
-            <a href="/service-agreement" className="text-primary-600">
+            <a href="/service-agreement" className="text-blue-400 hover:text-blue-300 transition-colors duration-200">
               Closed Beta Service Agreement
             </a>
             .
@@ -986,7 +986,7 @@ const FilterForm = ({
         {formSubmitted && !success && (
           <div className="block my-6">
             <div
-              className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+              className="bg-red-900/20 border border-red-500/30 text-red-300 px-4 py-3 rounded-lg relative backdrop-blur-sm"
               role="alert"
             >
               <strong className="font-bold">Error</strong>
@@ -999,7 +999,7 @@ const FilterForm = ({
         {formSubmitted && success && (
           <div className="block my-6">
             <div
-              className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative"
+              className="bg-green-900/20 border border-green-500/30 text-green-300 px-4 py-3 rounded-lg relative backdrop-blur-sm"
               role="alert"
             >
               <strong className="font-bold">Success</strong>
@@ -1013,7 +1013,7 @@ const FilterForm = ({
         <div className="mt-6 flex items-center gap-x-6">
           <button
             type="submit"
-            className="rounded-md bg-primary-600 px-8 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 flex"
+            className="rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 px-8 py-3 text-sm font-semibold text-white shadow-lg hover:from-blue-400 hover:to-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400 transition-all duration-200 transform hover:scale-105 flex disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
             disabled={loading}
           >
             {loading && (
@@ -1043,16 +1043,16 @@ const FilterForm = ({
         </div>
 
         <div>
-          <p className="mt-6 text leading-6 text-gray-600">
+          <p className="mt-6 text leading-6 text-gray-300">
             Thanks so much for helping to improve our service.
           </p>
-          <p className="mt-6 text leading-6 text-gray-600">
+          <p className="mt-6 text leading-6 text-gray-300">
             Please send any feedback to:{' '}
-            <a href="mailto:team@omg-ecom.com" className="text-primary-600">
+            <a href="mailto:team@omg-ecom.com" className="text-blue-400 hover:text-blue-300 transition-colors duration-200">
               team@omg-ecom.com
             </a>
           </p>
-          <p className="mt-6 text leading-6 text-gray-600">Have a nice day.</p>
+          <p className="mt-6 text leading-6 text-gray-300">Have a nice day.</p>
         </div>
       </div>
     </form>

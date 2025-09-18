@@ -1,4 +1,4 @@
-import { getSession, createServerSupabaseClient } from '../../supabase-server';
+import { getSession, createServerSupabaseClient } from '../supabase-server';
 import { redirect } from 'next/navigation';
 import { createClient } from '@supabase/supabase-js';
 import { cookies } from 'next/headers';
@@ -79,29 +79,31 @@ const PreferecesPage = async () => {
   );
 
   return (
-    <section className="container mx-auto mb-20">
-      <div className="max-w-screen-lg">
-        <h1 className="text-4xl my-8">Settings</h1>
-        <div className="my-8 space-y-8 max-w-screen-md">
-          <FilterForm
-            initUserDetails={{
-              firstName: userDetails.first_name,
-              lastName: userDetails.last_name,
-              email: userDetails.email,
-              phone: userDetails.phone_mobile,
-              notificationFrequency: userDetails.notification_limit_per_day,
-              notificationChannel: userDetails.push_notification_channel,
-              notificationAllDeals: userDetails.push_notification_all_deals
-            }}
-            initAffiliatePrograms={amazonAffiliatePrograms.concat(
-              awinAffiliatePrograms
-            )}
-            // @ts-ignore
-            initCategories={categories}
-          />
+    <div className="max-w-6xl mx-auto">
+      <div className="bg-vira-card rounded-3xl shadow-2xl border border-gray-800 p-8 lg:p-12">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-4xl font-bold text-white mb-8">Settings</h1>
+          <div className="space-y-8">
+            <FilterForm
+              initUserDetails={{
+                firstName: userDetails.first_name,
+                lastName: userDetails.last_name,
+                email: userDetails.email,
+                phone: userDetails.phone_mobile,
+                notificationFrequency: userDetails.notification_limit_per_day,
+                notificationChannel: userDetails.push_notification_channel,
+                notificationAllDeals: userDetails.push_notification_all_deals
+              }}
+              initAffiliatePrograms={amazonAffiliatePrograms.concat(
+                awinAffiliatePrograms
+              )}
+              // @ts-ignore
+              initCategories={categories}
+            />
+          </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 
