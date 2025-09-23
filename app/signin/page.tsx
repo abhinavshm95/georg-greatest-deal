@@ -8,7 +8,7 @@ export default async function SignIn() {
   const session = await getSession();
 
   if (session) {
-    return redirect('/tgd/settings');
+    return redirect('/settings');
   }
 
   return (
