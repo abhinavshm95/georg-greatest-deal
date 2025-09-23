@@ -406,6 +406,16 @@ const FilterForm = ({
     }
   };
 
+  const frequencyTiers = [
+    { name: 'Basic', value: 5, id: 'basic' },
+    { name: 'Growth', value: 20, id: 'growth' },
+    { name: 'Pro', value: 50, id: 'pro' }
+  ];
+
+  const userMaxNotifications =
+    subscription?.prices?.products?.max_notification_limit;
+  const limit = userMaxNotifications ?? 5;
+
   return (
     <>
     <div className="border-b border-gray-700 pb-12">
@@ -861,32 +871,35 @@ const FilterForm = ({
                   </span>
                 )}
               </p>
-              <div className="relative my-6 mb-2">
-                <span className="text-xl text-white">
-                  ~ {pushNotificationsFrequency} per Day
-                </span>
-              </div>
-              <div className="relative my-6 mb-20">
-                <label htmlFor="labels-range-input" className="sr-only">
-                  Labels range
-                </label>
-                <input
-                  id="labels-range-input"
-                  type="range"
-                  min="1"
-                  max={maxDeals}
-                  defaultValue={notificationFrequency}
-                  className="w-full h-2 bg-gray-600 rounded-lg appearance-none cursor-pointer focus:ring-blue-500 focus:ring-1 accent-blue-500"
-                  onChange={(e) =>
-                    onPushNotificationsFrequencyChange(e.target.value)
-                  }
-                />
-                <span className="text-sm text-gray-400 absolute start-0 -bottom-6">
-                  ~ 1 per Day
-                </span>
-                <span className="text-sm text-gray-400 absolute end-0 -bottom-6">
-                  ~ {maxDeals} per Day
-                </span>
+              <div className="mt-6 space-y-6">
+                {frequencyTiers.map((tier) => {
+                  const isDisabled = subLoading || limit < tier.value;
+                  return (
+                    <div className="flex items-center gap-x-3" key={tier.id}>
+                      <input
+                        id={tier.id}
+                        name="push-notifications-frequency"
+                        type="radio"
+                        value={tier.value}
+                        className="h-4 w-4 border-gray-600 text-blue-500 focus:ring-blue-500 bg-gray-700 disabled:opacity-50"
+                        checked={pushNotificationsFrequency === tier.value}
+                        onChange={(e) =>
+                          onPushNotificationsFrequencyChange(e.target.value)
+                        }
+                        disabled={isDisabled}
+                      />
+                      <label
+                        htmlFor={tier.id}
+                        className={cn(
+                          'block text-sm font-medium leading-6',
+                          isDisabled ? 'text-gray-400' : 'text-white'
+                        )}
+                      >
+                        {tier.name} (~{tier.value} per day)
+                      </label>
+                    </div>
+                  );
+                })}
               </div>
             </fieldset>
 
@@ -936,38 +949,6 @@ const FilterForm = ({
                   >
                     Email
                   </label>
-                </div>
-              </div>
-            </fieldset>
-
-            <fieldset className="col-span-full">
-              <legend className="text-sm font-semibold leading-6 text-white">
-                All Deals
-              </legend>
-              <p className="mt-1 text-sm leading-6 text-gray-300">
-                Get notified when a new deal is posted, regardless of your
-                affiliate program preferences.
-              </p>
-              <div className="mt-6 space-y-6">
-                <div className="relative flex gap-x-3">
-                  <div className="flex h-6 items-center">
-                    <input
-                      {...register('allDeals')}
-                      id="allDeals"
-                      name="all-deals"
-                      type="checkbox"
-                      className="h-4 w-4 rounded border-gray-600 bg-gray-700 text-blue-500 focus:ring-blue-500"
-                      defaultChecked={notificationAllDeals}
-                    />
-                  </div>
-                  <div className="text-sm leading-6">
-                    <label
-                      htmlFor="allDeals"
-                      className="font-medium text-white"
-                    >
-                      All Deals notifications
-                    </label>
-                  </div>
                 </div>
               </div>
             </fieldset>

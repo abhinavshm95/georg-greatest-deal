@@ -71,7 +71,7 @@ export async function POST(req: Request) {
           email: email,
           notification_limit_per_day: notificationFrequency,
           push_notification_channel: notificationChannel,
-          push_notification_all_deals: notificationAllDeals
+          push_notification_all_deals: true
         }
       ]);
 

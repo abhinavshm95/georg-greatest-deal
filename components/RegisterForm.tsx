@@ -77,6 +77,12 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
     useState('whatsapp');
   const [showPassword, setShowPassword] = useState(false);
 
+  const frequencyTiers = [
+    { name: 'Basic', value: 5, id: 'basic' },
+    { name: 'Growth', value: 20, id: 'growth' },
+    { name: 'Pro', value: 50, id: 'pro' }
+  ];
+
   const onPushNotificationsFrequencyChange = (value: string) => {
     const newValue = Number(value);
     setPushNotificationsFrequency(newValue);
@@ -383,7 +389,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
             phone: formData.phone,
             notificationFrequency: pushNotificationsFrequency,
             notificationChannel: pushNotificationsChannel,
-            notificationAllDeals: formData.allDeals,
+            // notificationAllDeals: formData.allDeals,
             categories: JSON.stringify(allCategories),
             affiliatePrograms: JSON.stringify(allAffiliatePrograms)
           })
@@ -861,41 +867,39 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                 How many deal notifications do you want to receive per day?
                 {selectedPrice && (
                   <span className="block mt-1 text-xs text-primary-600">
-                    {plans.find(plan => plan.price?.id === selectedPrice.id)?.product.name} Plan: {frequencyLimits.min} - {frequencyLimits.max} notifications per day
+                    {plans.find(plan => plan.price?.id === selectedPrice.id)?.product.name} Plan: up to {frequencyLimits.max} notifications per day
                   </span>
                 )}
               </p>
-              <div className="relative my-8 mb-4">
-                <span className="text-2xl font-bold text-white">
-                  ~ {pushNotificationsFrequency} per Day
-                </span>
-              </div>
-              <div className="relative my-8 mb-24">
-                <label htmlFor="labels-range-input" className="sr-only">
-                  Labels range
-                </label>
-                <div className="relative">
-                  <input
-                    id="labels-range-input"
-                    type="range"
-                    min={frequencyLimits.min}
-                    max={frequencyLimits.max}
-                    value={pushNotificationsFrequency}
-                    className="w-full h-3 bg-gray-600/50 rounded-full appearance-none cursor-pointer focus:outline-none focus:ring-4 focus:ring-blue-500/30 slider"
-                    onChange={(e) =>
-                      onPushNotificationsFrequencyChange(e.target.value)
-                    }
-                    style={{
-                      background: `linear-gradient(to right, #3B82F6 0%, #3B82F6 ${((pushNotificationsFrequency - frequencyLimits.min) / (frequencyLimits.max - frequencyLimits.min)) * 100}%, rgba(156, 163, 175, 0.3) ${((pushNotificationsFrequency - frequencyLimits.min) / (frequencyLimits.max - frequencyLimits.min)) * 100}%, rgba(156, 163, 175, 0.3) 100%)`
-                    }}
-                  />
-                </div>
-                <span className="text-sm text-gray-400 absolute start-0 -bottom-8">
-                  ~ {frequencyLimits.min} per Day
-                </span>
-                <span className="text-sm text-gray-400 absolute end-0 -bottom-8">
-                  ~ {frequencyLimits.max} per Day
-                </span>
+              <div className="mt-6 space-y-6">
+                {frequencyTiers.map((tier) => {
+                  const isDisabled = frequencyLimits.max < tier.value;
+                  return (
+                    <div className="flex items-center gap-x-3" key={tier.id}>
+                      <input
+                        id={tier.id}
+                        name="push-notifications-frequency"
+                        type="radio"
+                        value={tier.value}
+                        className="h-4 w-4 border-gray-600 text-blue-500 focus:ring-blue-500 bg-gray-700 disabled:opacity-50"
+                        checked={pushNotificationsFrequency === tier.value}
+                        onChange={(e) =>
+                          onPushNotificationsFrequencyChange(e.target.value)
+                        }
+                        disabled={isDisabled}
+                      />
+                      <label
+                        htmlFor={tier.id}
+                        className={cn(
+                          'block text-sm font-medium leading-6',
+                          isDisabled ? 'text-gray-400' : 'text-white'
+                        )}
+                      >
+                        {tier.name} (~{tier.value} per day)
+                      </label>
+                    </div>
+                  );
+                })}
               </div>
             </fieldset>
 
@@ -955,23 +959,6 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                 Get notified when a new deal is posted, regardless of your
                 affiliate program preferences.
               </p>
-              <div className="mt-6 space-y-5">
-                <div className="flex items-center gap-x-4">
-                  <input
-                    {...register('allDeals')}
-                    id="allDeals"
-                    name="all-deals"
-                    type="checkbox"
-                    className="checkbox-custom"
-                  />
-                  <label
-                    htmlFor="allDeals"
-                    className="text-base font-medium text-gray-100 cursor-pointer"
-                  >
-                    All Deals notifications
-                  </label>
-                </div>
-              </div>
             </fieldset>
           </div>
         </div>
