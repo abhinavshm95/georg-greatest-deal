@@ -835,7 +835,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                       : 'bg-white/20 text-white border border-white/30 backdrop-blur-sm hover:bg-white/30'
                   }`}
                 >
-                  {selectedPrice?.id === plan.price?.id ? 'Selected Plan' : 'Select Plan'}
+                  {selectedPrice?.id === plan.price?.id ? 'Ausgewählt' : 'Auswählen'}
                 </button>
               </div>
             ))}
