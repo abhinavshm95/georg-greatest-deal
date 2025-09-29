@@ -420,14 +420,14 @@ const FilterForm = ({
     <>
     <div className="border-b border-gray-700 pb-12">
           <h3 className="text-base font-semibold leading-7 text-white">
-            Subscription Management
+            Abonnementverwaltung
           </h3>
           <p className="mt-1 text-sm leading-6 text-gray-300">
-            Manage your subscription, update payment methods, and view billing history.
+            Verwalten Sie Ihr Abonnement, aktualisieren Sie Zahlungsmethoden und zeigen Sie den Rechnungsverlauf an.
           </p>
           <div className="mt-10">
             {subLoading ? (
-              <div className="text-gray-400">Loading subscription info...</div>
+              <div className="text-gray-400">Abonnementinformationen werden geladen …</div>
             ) : subscription ? (
               <div className="mb-4 space-y-2">
                 <div className="flex justify-between">
@@ -435,29 +435,29 @@ const FilterForm = ({
                   <span className="text-sm font-medium text-white">{subscription.status?.toUpperCase()}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-sm text-gray-300">Plan:</span>
+                  <span className="text-sm text-gray-300">Planen:</span>
                   <span className="text-sm font-medium text-white">{subscription.prices?.products?.name || 'N/A'}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-sm text-gray-300">Start Date:</span>
+                  <span className="text-sm text-gray-300">Startdatum:</span>
                   <span className="text-sm font-medium text-white">
                     {subscription.current_period_start ? new Date(subscription.current_period_start).toLocaleDateString() : 'N/A'}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-sm text-gray-300">Max Notifications:</span>
+                  <span className="text-sm text-gray-300">Maximale Benachrichtigungen:</span>
                   <span className="text-sm font-medium text-white">
                     {subscription.prices?.products?.max_notification_limit || 'N/A'} per day
                   </span>
                 </div>
               </div>
             ) : (
-              <div className="mb-4 text-gray-400">No active subscription found.</div>
+              <div className="mb-4 text-gray-400">Kein aktives Abonnement gefunden.</div>
             )}
             <button
               type="button"
               onClick={handleManageSubscription}
-              disabled={manageSubLoading}
+              disabled={manageSubLoading || !subscription}
               className={`rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 px-8 py-3 text-sm font-semibold text-white shadow-lg hover:from-blue-400 hover:to-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400 transition-all duration-200 transform hover:scale-105 flex items-center ${manageSubLoading ? 'opacity-50 cursor-not-allowed transform-none' : ''}`}
             >
               {manageSubLoading && (
@@ -482,7 +482,7 @@ const FilterForm = ({
                   ></path>
                 </svg>
               )}
-              Manage Subscription
+              Abonnement verwalten
             </button>
           </div>
         </div>
@@ -493,7 +493,7 @@ const FilterForm = ({
             Persönliche Angaben
           </h3>
           <p className="mt-1 text-sm leading-6 text-gray-300">
-            Use a permanent address where you can receive mail.
+            Verwenden Sie eine feste Adresse, an der Sie Post empfangen können.
           </p>
 
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -546,7 +546,7 @@ const FilterForm = ({
                 htmlFor="email"
                 className="block text-sm font-medium leading-6 text-gray-200"
               >
-                E-Mail Adresse* (can not be changed)
+                E-Mail Adresse* (kann nicht geändert werden)
               </label>
               <div className="mt-2">
                 <input
@@ -764,7 +764,7 @@ const FilterForm = ({
           </p>
 
           <p className="text-sm font-semibold leading-6 text-white mt-10">
-            Categories and Brands
+            Kategorien und Brands
           </p>
           <div className="mt-2 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div className="card flex justify-content-center w-100 col-span-full">
@@ -846,119 +846,6 @@ const FilterForm = ({
             </div>
           )}
         </div>
-
-        <div className="border-b border-gray-700 pb-12">
-          <h3 className="text-base font-semibold leading-7 text-white">
-            Notifications
-          </h3>
-          <p className="mt-1 text-sm leading-6 text-gray-300">
-            Set your notifications preferences.
-          </p>
-          <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-            <fieldset className="col-span-full">
-              <legend className="text-sm font-semibold leading-6 text-white">
-                Frequency
-              </legend>
-              <p className="mt-1 text-sm leading-6 text-gray-300">
-                How many deal notifications do you want to receive per day?
-                {subscription?.prices?.products?.max_notification_limit && (
-                  <span className="block mt-1 text-xs text-blue-400">
-                    Your {subscription.prices.products.name} plan allows up to {subscription.prices.products.max_notification_limit} notifications per day.
-                  </span>
-                )}
-              </p>
-              <div className="mt-6 space-y-6">
-                {frequencyTiers.map((tier) => {
-                  const isDisabled = subLoading || limit < tier.value;
-                  return (
-                    <div className="flex items-center gap-x-3" key={tier.id}>
-                      <input
-                        id={tier.id}
-                        name="push-notifications-frequency"
-                        type="radio"
-                        value={tier.value}
-                        className="h-4 w-4 border-gray-600 text-blue-500 focus:ring-blue-500 bg-gray-700 disabled:opacity-50"
-                        checked={pushNotificationsFrequency === tier.value}
-                        onChange={(e) =>
-                          onPushNotificationsFrequencyChange(e.target.value)
-                        }
-                        disabled={isDisabled}
-                      />
-                      <label
-                        htmlFor={tier.id}
-                        className={cn(
-                          'block text-sm font-medium leading-6',
-                          isDisabled ? 'text-gray-400' : 'text-white'
-                        )}
-                      >
-                        {tier.name} (~{tier.value} per day)
-                      </label>
-                    </div>
-                  );
-                })}
-              </div>
-            </fieldset>
-
-            <fieldset className="col-span-full">
-              <legend className="text-sm font-semibold leading-6 text-white">
-                Channel
-              </legend>
-              <p className="mt-1 text-sm leading-6 text-gray-300">
-                Diese werden per WhatsApp auf Ihr Mobiltelefon oder per E-Mail zugestellt.
-              </p>
-              <div className="mt-6 space-y-6">
-                <div className="flex items-center gap-x-3">
-                  <input
-                    {...register('pushNotificationsChannel')}
-                    id="pushWhatsapp"
-                    name="push-notifications-channel"
-                    type="radio"
-                    className="h-4 w-4 border-gray-600 text-blue-500 focus:ring-blue-500 bg-gray-700"
-                    checked={pushNotificationsChannel === 'whatsapp'}
-                    onChange={() =>
-                      onPushNotificationsChannelChange('whatsapp')
-                    }
-                    defaultChecked={notificationChannel === 'whatsapp'}
-                  />
-                  <label
-                    htmlFor="pushWhatsapp"
-                    className="block text-sm font-medium leading-6 text-white"
-                  >
-                    WhatsApp
-                  </label>
-                </div>
-                <div className="flex items-center gap-x-3">
-                  <input
-                    id="pushEmail"
-                    name="push-notifications-channel"
-                    type="radio"
-                    className="h-4 w-4 border-gray-600 text-blue-500 focus:ring-blue-500 bg-gray-700 disabled:opacity-50"
-                    checked={pushNotificationsChannel === 'email'}
-                    onChange={() => onPushNotificationsChannelChange('email')}
-                    disabled
-                    defaultChecked={notificationChannel === 'email'}
-                  />
-                  <label
-                    htmlFor="pushEmail"
-                    className="block text-sm font-medium leading-6 text-gray-400"
-                  >
-                    Email
-                  </label>
-                </div>
-              </div>
-            </fieldset>
-          </div>
-        </div>
-        <div>
-          <p className="mt-1 leading-6 text-gray-300">
-            By using our service you agree to the{' '}
-            <a href="/service-agreement" className="text-blue-400 hover:text-blue-300 transition-colors duration-200">
-              Closed Beta Service Agreement
-            </a>
-            .
-          </p>
-        </div>
-
         {formSubmitted && !success && (
           <div className="block my-6">
             <div
@@ -978,9 +865,9 @@ const FilterForm = ({
               className="bg-green-900/20 border border-green-500/30 text-green-300 px-4 py-3 rounded-lg relative backdrop-blur-sm"
               role="alert"
             >
-              <strong className="font-bold">Success</strong>
+              <strong className="font-bold">Erfolg</strong>
               <span className="block sm:inline pl-4">
-                You are signed up successfully
+                Sie sind erfolgreich angemeldet
               </span>
             </div>
           </div>
@@ -1014,21 +901,8 @@ const FilterForm = ({
                 ></path>
               </svg>
             )}
-            Save Settings
+            Einstellungen speichern
           </button>
-        </div>
-
-        <div>
-          <p className="mt-6 text leading-6 text-gray-300">
-            Thanks so much for helping to improve our service.
-          </p>
-          <p className="mt-6 text leading-6 text-gray-300">
-            Please send any feedback to:{' '}
-            <a href="mailto:team@omg-ecom.com" className="text-blue-400 hover:text-blue-300 transition-colors duration-200">
-              team@omg-ecom.com
-            </a>
-          </p>
-          <p className="mt-6 text leading-6 text-gray-300">Have a nice day.</p>
         </div>
       </div>
     </form>
