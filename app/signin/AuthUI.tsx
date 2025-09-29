@@ -135,7 +135,7 @@ export default function AuthUI() {
             onChange={(e) => setEmail(e.target.value)}
             required
             className={inputClassName}
-            placeholder="Enter your email"
+            placeholder="Geben Sie Ihre E-Mail-Adresse ein"
           />
         </div>
 
@@ -175,7 +175,7 @@ export default function AuthUI() {
           onClick={switchToForgotPassword}
           className={linkClassName}
         >
-          Forgot your password?
+          Passwort vergessen?
         </button>
 
         <div>
@@ -183,7 +183,7 @@ export default function AuthUI() {
             href="/signup"
             className={linkClassName}
           >
-            Don't have an account? Sign up
+            Sie haben noch kein Konto? Registrieren
           </Link>
         </div>
       </div>
