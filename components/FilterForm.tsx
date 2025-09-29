@@ -490,7 +490,7 @@ const FilterForm = ({
       <div className="my-8 space-y-8 max-w-screen-md">
         <div className="border-b border-gray-700 pb-12">
           <h3 className="text-base font-semibold leading-7 text-white">
-            Personal Information
+            Persönliche Angaben
           </h3>
           <p className="mt-1 text-sm leading-6 text-gray-300">
             Use a permanent address where you can receive mail.
@@ -502,7 +502,7 @@ const FilterForm = ({
                 htmlFor="firstName"
                 className="block text-sm font-medium leading-6 text-gray-200"
               >
-                First name*
+                Vorname*
               </label>
               <div className="mt-2">
                 <input
@@ -524,7 +524,7 @@ const FilterForm = ({
                 htmlFor="lastName"
                 className="block text-sm font-medium leading-6 text-gray-200"
               >
-                Last name*
+                Nachname*
               </label>
               <div className="mt-2">
                 <input
@@ -546,7 +546,7 @@ const FilterForm = ({
                 htmlFor="email"
                 className="block text-sm font-medium leading-6 text-gray-200"
               >
-                Email address* (can not be changed)
+                E-Mail Adresse* (can not be changed)
               </label>
               <div className="mt-2">
                 <input
@@ -569,7 +569,7 @@ const FilterForm = ({
                 htmlFor="phone"
                 className="block text-sm font-medium leading-6 text-gray-200"
               >
-                Mobile Phone*
+                Mobiltelefonnummer (WhatsApp)*
               </label>
               <div className="mt-2">
                 <input
@@ -585,8 +585,7 @@ const FilterForm = ({
                 />
               </div>
               <p className="text-xs text-gray-400 mt-2">
-                Please make sure your phone number starts with +49 and has no
-                blank spaces.
+                Bitte achten Sie darauf, dass Ihre Telefonnummer mit +49 beginnt und keine Leerzeichen enthält.
               </p>
             </div>
 
@@ -595,7 +594,7 @@ const FilterForm = ({
                 htmlFor="password"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
-                Password
+                Passwort
               </label>
               <div className="mt-2">
                 <input
@@ -616,13 +615,10 @@ const FilterForm = ({
           id="affiliate-programs"
         >
           <h3 className="text-base font-semibold leading-7 text-white">
-            Affiliate Programs
+            Affiliate Programme
           </h3>
           <p className="mt-1 text-sm leading-6 text-gray-300">
-            To start, all you need is an account with the Amazon Associates
-            Program and/ or AWIN to monetize the links we will send you.{' '}
-            <br></br> We will automatically add your account-ID to the links we
-            send you, so you can post them right away.
+            Teile uns hier Deine ID für das Affiliate Programm von Amazon oder AWIN mit. Bist Du bei beiden registriert, füge einfach ein weiteres Programm mit „+“ hinzu. Wir integrieren Deine IDs automatisch mit unseren Linkservice „Viralink“.
           </p>
 
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -761,10 +757,10 @@ const FilterForm = ({
 
         <div className="border-b border-gray-700 pb-12" id="categories">
           <h3 className="text-base font-semibold leading-7 text-white">
-            Category and Brand Preferences
+            Kategorien und Brands
           </h3>
           <p className="mt-1 text-sm leading-6 text-gray-300">
-            Select the categories and brands you are interested in.
+            Wähle aus, welche Kategorien oder Brands am besten zu Deiner Audience passen. Tip: Sei grosszügig bei der Auswahl, um eine angemessene Anzahl Deals zu bekommen aus denen Du dann wählen kannst. 
           </p>
 
           <p className="text-sm font-semibold leading-6 text-white mt-10">
@@ -805,7 +801,7 @@ const FilterForm = ({
                   metaKeySelection={false}
                   className="md:w-20rem w-full border border-gray-600 bg-gray-700 text-white rounded-lg"
                   selectionMode="checkbox"
-                  placeholder="Select Categories and Brands"
+                  placeholder="Kategorien und Marken auswählen"
                   filter
                   required
                 />
@@ -821,7 +817,7 @@ const FilterForm = ({
                 )}
                 selectionMode="checkbox"
                 display="chip"
-                placeholder="Select Categories and Brands"
+                placeholder="Kategorien und Marken auswählen"
                 filter
               /> */}
             </div>
@@ -908,8 +904,7 @@ const FilterForm = ({
                 Channel
               </legend>
               <p className="mt-1 text-sm leading-6 text-gray-300">
-                These are delivered via WhatsApp to your mobile phone or via
-                email.
+                Diese werden per WhatsApp auf Ihr Mobiltelefon oder per E-Mail zugestellt.
               </p>
               <div className="mt-6 space-y-6">
                 <div className="flex items-center gap-x-3">

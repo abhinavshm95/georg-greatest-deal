@@ -80,7 +80,7 @@ export default function AuthUI() {
         <form onSubmit={handleForgotPassword} className="flex gap-6 flex-col">
           <div>
             <label htmlFor="email" className="block text-sm font-semibold leading-6 text-gray-200 mb-3">
-              Email address
+              E-Mail Adresse
             </label>
             <input
               id="email"
@@ -89,7 +89,7 @@ export default function AuthUI() {
               onChange={(e) => setEmail(e.target.value)}
               required
               className={inputClassName}
-              placeholder="Your email address"
+              placeholder="Your E-Mail Adresse"
             />
           </div>
 
@@ -141,7 +141,7 @@ export default function AuthUI() {
 
         <div>
           <label htmlFor="password" className="block text-sm font-semibold leading-6 text-gray-200 mb-3">
-            Password
+            Passwort
           </label>
           <input
             id="password"
@@ -150,7 +150,7 @@ export default function AuthUI() {
             onChange={(e) => setPassword(e.target.value)}
             required
             className={inputClassName}
-            placeholder="Enter your password"
+            placeholder="Geben Sie Ihr Passwort ein"
           />
         </div>
 

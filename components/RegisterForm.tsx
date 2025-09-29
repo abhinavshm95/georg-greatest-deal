@@ -417,10 +417,10 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
         <div className="space-y-12">
           <div className="border-b border-gray-600/30 pb-12">
           <h3 className="text-2xl font-bold leading-8 text-white mb-2">
-            Personal Information
+            Persönliche Angaben
           </h3>
           <p className="text-gray-300 text-lg">
-            Enter your personal details to get started.
+            Wir brauchen nur wenig Informationen über Dich um zu starten. Füge Sie hier ein.
           </p>
 
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -429,7 +429,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                 htmlFor="firstName"
                 className="block text-sm font-semibold leading-6 text-gray-200 mb-3"
               >
-                First name*
+                Vorname*
               </label>
               <div className="mt-2">
                 <input
@@ -450,7 +450,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                 htmlFor="lastName"
                 className="block text-sm font-semibold leading-6 text-gray-200 mb-3"
               >
-                Last name*
+                Nachname*
               </label>
               <div className="mt-2">
                 <input
@@ -471,7 +471,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                 htmlFor="email"
                 className="block text-sm font-semibold leading-6 text-gray-200 mb-3"
               >
-                Email address*
+                E-Mail Adresse*  
               </label>
               <div className="mt-2">
                 <input
@@ -492,7 +492,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                 htmlFor="phone"
                 className="block text-sm font-semibold leading-6 text-gray-200 mb-3"
               >
-                Mobile Phone*
+                Mobiltelefonnummer (WhatsApp)*
               </label>
               <div className="mt-2">
                 <input
@@ -507,8 +507,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                 />
               </div>
               <p className="text-xs text-gray-400 mt-2">
-                Please make sure your phone number starts with +49 and has no
-                blank spaces.
+                Bitte achten Sie darauf, dass Ihre Telefonnummer mit +49 beginnt und keine Leerzeichen enthält.
               </p>
             </div>
 
@@ -517,7 +516,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                 htmlFor="password"
                 className="block text-sm font-semibold leading-6 text-gray-200 mb-3"
               >
-                Password*
+                Passwort*
               </label>
               <div className="mt-2 relative">
                 <input
@@ -526,7 +525,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                   name="password"
                   type={showPassword ? 'text' : 'password'}
                   className="block w-full rounded-lg border-0 py-4 px-5 pr-12 text-gray-900 bg-gray-100 ring-1 ring-inset ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-blue-500 focus:bg-white focus:border-transparent text-base transition-all duration-200 hover:bg-gray-50"
-                  placeholder="Enter your password"
+                  placeholder="Geben Sie Ihr Passwort ein"
                   required
                 />
                 <button
@@ -550,13 +549,10 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
           id="affiliate-programs"
         >
           <h3 className="text-2xl font-bold leading-8 text-white mb-2">
-            Affiliate Programs
+            Affiliate Programme
           </h3>
           <p className="text-gray-300 text-lg mb-8">
-            To start, all you need is an account with the Amazon Associates
-            Program and/ or AWIN to monetize the links we will send you.{' '}
-            <br></br> We will automatically add your account-ID to the links we
-            send you, so you can post them right away.
+            Teile uns hier Deine ID für das Affiliate Programm von Amazon oder AWIN mit. Bist Du bei beiden registriert, füge einfach ein weiteres Programm mit „+“ hinzu. Wir integrieren Deine IDs automatisch mit unseren Linkservice „Viralink“. 
           </p>
 
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -680,10 +676,10 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
 
         <div className="border-b border-gray-900/10 pb-12" id="categories">
           <h3 className="text-2xl font-bold leading-8 text-white mb-2">
-            Category and Brand Preferences
+            Kategorien und Brands
           </h3>
           <p className="text-gray-300 text-lg mb-8">
-            Select the categories and brands you are interested in.
+            Wähle aus, welche Kategorien oder Brands am besten zu Deiner Audience passen. Tip: Sei grosszügig bei der Auswahl, um eine angemessene Anzahl Deals zu bekommen aus denen Du dann wählen kannst. 
           </p>
 
           <p className="text-sm font-semibold leading-6 text-gray-100 mt-10">
@@ -702,7 +698,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                 )}
                 selectionMode="checkbox"
                 display="chip"
-                placeholder="Select Categories"
+                placeholder="Kategorien auswählen"
                 filter
               />
             </div>
@@ -723,7 +719,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                 )}
                 selectionMode="checkbox"
                 display="chip"
-                placeholder="Select Brands"
+                placeholder="Ausgewählte Brands"
                 filter
               />
             </div>
@@ -755,10 +751,10 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
 
         <div className="border-b border-gray-600/30 pb-12">
           <h3 className="text-2xl font-bold leading-8 text-white mb-2">
-            Pricing Plan
+            Unsere Services
           </h3>
           <p className="text-gray-300 text-lg mb-8">
-            Choose your subscription plan to get started.
+            Wähle das Abomodell aus, welches am Besten zu Dir passt.
           </p>
 
           <div className="flex justify-center mt-6 mb-12">
@@ -772,7 +768,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                     : 'text-gray-600 hover:text-gray-900'
                 }`}
               >
-                Monthly billing
+                Monatliche Abrechnung
               </button>
               <button
                 type="button"
@@ -783,7 +779,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                     : 'text-gray-600 hover:text-gray-900'
                 }`}
               >
-                Yearly billing
+                Jährliche Abrechnung
               </button>
             </div>
           </div>
@@ -818,7 +814,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                       : 'N/A'}
                   </div>
                   <p className="text-gray-300 text-lg">
-                    {billingInterval === 'month' ? '/ month' : '/ year'}
+                    {billingInterval === 'month' ? '/ Monat' : '/ Jahr'}
                   </p>
                 </div>
 
@@ -845,13 +841,13 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
             ))}
           </div>
           <div className="mt-12 text-sm text-gray-400 text-center max-w-4xl mx-auto">
-            <p className="mb-2">* incl. VAT</p>
-            <p className="mb-2">** The amount of deal messages depends on the selected categories / brands and could be lower.</p>
-            <p>*** To maximize your monetization, we will DOUBLE the WA message amount for 2 days during these Deal Events (Pack1: Black Friday; Pack2: Prime Day, Black Friday)</p>
+            <p className="mb-2">* incl. MwSt.</p>
+            <p className="mb-2">** Die Anzahl Deals pro Tag hängt von den ausgewählten Kategorien / Brands ab und kann geringer sein als das ausgewählte Paket. Wähle mehr Kategorien / Brands aus, um die maximale Anzahl Deals pro Tag zu erhalten.</p>
+            <p>*** Wir verdoppeln während Deal Events für zwei Tage die Anzahl der WhatsApp Nachrichten (Pack1: Black Friday; Pack2: Prime Days, Black Friday)</p>
           </div>
         </div>
 
-        <div className="border-b border-gray-900/10 pb-12">
+        {/* <div className="border-b border-gray-900/10 pb-12">
           <h3 className="text-2xl font-bold leading-8 text-white mb-2">
             Notifications
           </h3>
@@ -961,9 +957,9 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
               </p>
             </fieldset>
           </div>
-        </div>
+        </div> */}
 
-        <div>
+        {/* <div>
           <p className="mt-1 leading-6 text-gray-300">
             By signing up you agree to the{' '}
             <a href="/service-agreement" className="text-primary-600">
@@ -971,7 +967,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
             </a>
             .
           </p>
-        </div>
+        </div> */}
 
         {formSubmitted && !success && (
           <div className="block my-6">
@@ -981,7 +977,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
             >
               <strong className="font-bold">Error</strong>
               <span className="block sm:inline pl-4">
-                Something went wrong. Please try again later.
+                Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut.
               </span>
             </div>
           </div>
@@ -994,7 +990,7 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
             >
               <strong className="font-bold">Success</strong>
               <span className="block sm:inline pl-4">
-                You are signed up successfully
+                Sie sind erfolgreich registriert
               </span>
             </div>
           </div>
@@ -1028,22 +1024,9 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
                 ></path>
               </svg>
             )}
-            Sign up & Continue to Payment
+            Bestätigen und weiter zur Zahlung
           </button>
         </div>
-
-        <div>
-          <p className="mt-6 text leading-6 text-gray-300">
-            Thanks so much for helping to improve our service.
-          </p>
-          <p className="mt-6 text leading-6 text-gray-300">
-            Please send any feedback to:{' '}
-            <a href="mailto:team@omg-ecom.com" className="text-primary-600">
-              team@omg-ecom.com
-            </a>
-          </p>
-          <p className="mt-6 text leading-6 text-gray-300">Have a nice day.</p>
-          </div>
         </div>
       </form>
     </div>

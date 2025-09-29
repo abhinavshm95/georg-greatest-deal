@@ -23,7 +23,7 @@ export default async function AppPage() {
               Join ViraLink
             </h1>
             <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              Start your affiliate marketing journey with AI-driven deal discovery
+              Mit Viralink kannst Du schnell und einfach Deine Marketingeinnahmen steigern. Worauf wartest Du?
             </p>
           </div>
           <RegisterForm products={products} />
