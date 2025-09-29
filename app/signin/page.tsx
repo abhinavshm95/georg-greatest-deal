@@ -18,7 +18,7 @@ export default async function SignIn() {
           <div className="flex justify-center pb-8">
             <Logo width="64px" height="64px" />
           </div>
-          <h1 className="text-4xl font-bold text-center mb-8 text-white">Willkommen zurück</h1>
+          <h1 className="text-4xl font-bold text-center mb-8 text-white">Willkommen zurück xyz</h1>
           <p className="text-gray-300 text-center mb-8">Melden Sie sich bei Ihrem Konto an, um fortzufahren</p>
           <AuthUI />
         </div>
