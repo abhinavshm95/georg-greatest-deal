@@ -161,6 +161,19 @@ export async function PUT(req: Request) {
       const jsonCategories = JSON.parse(categories);
       const jsonAffiliatePrograms = JSON.parse(affiliatePrograms);
 
+      const pushAllDeals = (() => {
+        if (typeof notificationAllDeals === 'string') {
+          const normalized = notificationAllDeals.trim().toLowerCase();
+          return normalized === 'true' || normalized === '1';
+        }
+
+        if (typeof notificationAllDeals === 'number') {
+          return notificationAllDeals === 1;
+        }
+
+        return Boolean(notificationAllDeals);
+      })();
+
       console.log('firstName', firstName);
       console.log('lastName', lastName);
       console.log('phone', phone);
@@ -174,14 +187,14 @@ export async function PUT(req: Request) {
 
       // 2. Update preference
       // @ts-ignore
-      const { data, error } = await supabase.rpc('upsert_tgd_settings_test_2', {
+      const { data, error } = await supabaseAdmin.rpc('upsert_tgd_settings_test_2', {
         user_id: user.id,
         user_first_name: firstName,
         user_last_name: lastName,
         user_phone: phone,
         user_push_notification_channel: notificationChannel,
         user_notification_limit_per_day: notificationFrequency,
-        user_push_notification_all_deals: notificationAllDeals
+        user_push_notification_all_deals: pushAllDeals
       });
 
       if (error) throw error;
