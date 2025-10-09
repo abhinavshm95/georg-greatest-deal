@@ -71,7 +71,13 @@ export default function RootLayout({ children }: PropsWithChildren) {
   const [userEmail, setUserEmail] = useState('');
 
   useEffect(() => {
-    getUserEmail().then((email) => setUserEmail(email));
+    getUserEmail().then((email) => {
+      if (!email) {
+        router.push('/signin');
+      } else {
+        setUserEmail(email);
+      }
+    });
   }, []);
 
   const getUserEmail = async () => {
