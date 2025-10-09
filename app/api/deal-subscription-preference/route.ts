@@ -185,7 +185,7 @@ export async function PUT(req: Request) {
       console.log('jsonAffiliatePrograms', jsonAffiliatePrograms);
       console.log('user_id', user.id);
 
-      // 2. Update preference
+      // 2. Update user settings
       // @ts-ignore
       const { data, error } = await supabaseAdmin.rpc('upsert_tgd_settings_test_2', {
         user_id: user.id,
@@ -200,6 +200,137 @@ export async function PUT(req: Request) {
       if (error) throw error;
 
       console.log('data', data);
+
+      // 3. Upsert categories (deal_filter)
+      // Get existing categories
+      const existingCategoriesResult = await supabaseAdmin
+        .from('deal_filter')
+        .select('id, category')
+        .eq('user', user.id);
+
+      if (existingCategoriesResult.error) throw existingCategoriesResult.error;
+
+      const existingCategories = existingCategoriesResult.data || [];
+      const incomingCategoryIds = (Array.isArray(jsonCategories) ? jsonCategories : [])
+        .map((c: any) => String(c.id));
+
+      // Find categories to delete (exist in DB but not in incoming)
+      const categoriesToDelete = existingCategories
+        .filter((ec) => !incomingCategoryIds.includes(String(ec.category)))
+        .map((ec) => ec.id);
+
+      if (categoriesToDelete.length > 0) {
+        const deleteResult = await supabaseAdmin
+          .from('deal_filter')
+          .delete()
+          .in('id', categoriesToDelete);
+
+        if (deleteResult.error) throw deleteResult.error;
+      }
+
+      // Find categories to add (in incoming but not in DB)
+      const existingCategoryIds = existingCategories.map((ec) => String(ec.category));
+      const categoriesToAdd = incomingCategoryIds.filter(
+        (id) => !existingCategoryIds.includes(id)
+      );
+
+      if (categoriesToAdd.length > 0) {
+        const insertResult = await supabaseAdmin
+          .from('deal_filter')
+          .insert(
+            categoriesToAdd.map((categoryId) => ({
+              user: user.id,
+              min_score: null,
+              category: categoryId
+            }))
+          );
+
+        if (insertResult.error) throw insertResult.error;
+      }
+
+      // 4. Upsert affiliate programs
+      const amazonAffiliatePrograms = (Array.isArray(jsonAffiliatePrograms) ? jsonAffiliatePrograms : [])
+        .filter((p: any) => (p?.name || '').toLowerCase() === 'amazon');
+      const awinAffiliatePrograms = (Array.isArray(jsonAffiliatePrograms) ? jsonAffiliatePrograms : [])
+        .filter((p: any) => (p?.name || '').toLowerCase() === 'awin');
+
+      // Get existing affiliate programs
+      const [existingAmazonResult, existingAwinResult] = await Promise.all([
+        supabaseAdmin.from('affiliate_amazon').select('id, affiliate_id').eq('user', user.id),
+        supabaseAdmin.from('affiliate_awin').select('id, affiliate_id').eq('user', user.id)
+      ]);
+
+      if (existingAmazonResult.error) throw existingAmazonResult.error;
+      if (existingAwinResult.error) throw existingAwinResult.error;
+
+      const existingAmazon = existingAmazonResult.data || [];
+      const existingAwin = existingAwinResult.data || [];
+
+      // Handle Amazon affiliates
+      const incomingAmazonIds = amazonAffiliatePrograms.map((p: any) => p.value);
+      const amazonToDelete = existingAmazon
+        .filter((ea) => !incomingAmazonIds.includes(ea.affiliate_id))
+        .map((ea) => ea.id);
+
+      if (amazonToDelete.length > 0) {
+        const deleteResult = await supabaseAdmin
+          .from('affiliate_amazon')
+          .delete()
+          .in('id', amazonToDelete);
+
+        if (deleteResult.error) throw deleteResult.error;
+      }
+
+      const existingAmazonAffiliateIds = existingAmazon.map((ea) => ea.affiliate_id);
+      const amazonToAdd = amazonAffiliatePrograms.filter(
+        (p: any) => !existingAmazonAffiliateIds.includes(p.value)
+      );
+
+      if (amazonToAdd.length > 0) {
+        const insertResult = await supabaseAdmin
+          .from('affiliate_amazon')
+          .insert(
+            amazonToAdd.map((p: any) => ({
+              user: user.id,
+              affiliate_id: p.value
+            }))
+          );
+
+        if (insertResult.error) throw insertResult.error;
+      }
+
+      // Handle Awin affiliates
+      const incomingAwinIds = awinAffiliatePrograms.map((p: any) => p.value);
+      const awinToDelete = existingAwin
+        .filter((ea) => !incomingAwinIds.includes(ea.affiliate_id))
+        .map((ea) => ea.id);
+
+      if (awinToDelete.length > 0) {
+        const deleteResult = await supabaseAdmin
+          .from('affiliate_awin')
+          .delete()
+          .in('id', awinToDelete);
+
+        if (deleteResult.error) throw deleteResult.error;
+      }
+
+      const existingAwinAffiliateIds = existingAwin.map((ea) => ea.affiliate_id);
+      const awinToAdd = awinAffiliatePrograms.filter(
+        (p: any) => !existingAwinAffiliateIds.includes(p.value)
+      );
+
+      if (awinToAdd.length > 0) {
+        const insertResult = await supabaseAdmin
+          .from('affiliate_awin')
+          .insert(
+            awinToAdd.map((p: any) => ({
+              user: user.id,
+              affiliate_id: p.value
+            }))
+          );
+
+        if (insertResult.error) throw insertResult.error;
+      }
 
       // // 2. Update preference
       // // @ts-ignore
