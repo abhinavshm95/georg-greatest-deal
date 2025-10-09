@@ -8,7 +8,6 @@ import 'primereact/resources/themes/lara-light-indigo/theme.css';
 import { ExclamationTriangleIcon } from '@heroicons/react/20/solid';
 import { PlusIcon } from '@heroicons/react/24/outline';
 import cn from 'classnames';
-import { useRouter } from 'next/navigation';
 import { TreeNode } from 'primereact/treenode';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import type { Database } from '@/types_db';
@@ -90,7 +89,14 @@ const FilterForm = ({
     formState: { errors }
   } = useForm<Inputs>();
 
-  const router = useRouter();
+  // Helper to scroll to a section without changing the route
+  const scrollToSection = (id: string) => {
+    if (typeof window === 'undefined') return;
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
 
   const [pushNotificationsFrequency, setPushNotificationsFrequency] =
     useState<number>(notificationFrequency);
@@ -340,14 +346,14 @@ const FilterForm = ({
       // set error message
       setNoAffiliatePrograms(true);
 
-      // scroll to affiliate programs section
-      router.push('#affiliate-programs');
+      // scroll to affiliate programs section without route navigation
+      scrollToSection('affiliate-programs');
     } else if (allCategories.length < 1) {
       // set error message
       setNoCategories(true);
 
-      // scroll to categories section
-      router.push('#categories');
+      // scroll to categories section without route navigation
+      scrollToSection('categories');
     } else {
       const allAffiliatePrograms =
         currentAffiliateProgramValue !== ''
@@ -360,8 +366,6 @@ const FilterForm = ({
               }
             ]
           : affiliatePrograms;
-
-      console.log('allAffiliatePrograms', allAffiliatePrograms);
 
       setLoading(true);
 
