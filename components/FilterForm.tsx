@@ -462,7 +462,7 @@ const FilterForm = ({
               type="button"
               onClick={handleManageSubscription}
               disabled={manageSubLoading || !subscription}
-              className={`rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 px-8 py-3 text-sm font-semibold text-white shadow-lg hover:from-blue-400 hover:to-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400 transition-all duration-200 transform hover:scale-105 flex items-center ${manageSubLoading ? 'opacity-50 cursor-not-allowed transform-none' : ''}`}
+              className={`rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 px-8 py-3 text-sm font-semibold text-white shadow-lg hover:from-blue-400 hover:to-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400 transition-all duration-200 transform hover:scale-105 flex items-center ${(manageSubLoading || !subscription) ? 'opacity-50 cursor-not-allowed transform-none ' : ''}`}
             >
               {manageSubLoading && (
                 <svg
