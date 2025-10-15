@@ -23,7 +23,7 @@ export async function POST(req: Request) {
       
       const { url } = await stripe.billingPortal.sessions.create({
         customer,
-        return_url: `${getURL()}/account`
+        return_url: `${getURL()}/settings`
       });
       
       return new Response(JSON.stringify({ url }), {
