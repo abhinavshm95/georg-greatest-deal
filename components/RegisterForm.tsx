@@ -220,11 +220,8 @@ const RegisterForm = ({ products }: { products: ProductWithPrices[] }) => {
   // Update frequency when plan changes to stay within limits
   useEffect(() => {
     const limits = getFrequencyLimits();
-    if (pushNotificationsFrequency > limits.max) {
-      setPushNotificationsFrequency(limits.max);
-    } else if (pushNotificationsFrequency < limits.min) {
-      setPushNotificationsFrequency(limits.min);
-    }
+    setPushNotificationsFrequency(limits.max);
+    
   }, [selectedPrice]);
 
   // Sort products to show in the order: Basic, Growth, Pro
